@@ -11,5 +11,4 @@ let config = {
       "operatorsAliases": false
     }
   }
-  
   module.exports = config;

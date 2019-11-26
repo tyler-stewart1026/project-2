@@ -1,54 +1,39 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  // Get all 
+  app.get("/api/user", function(req, res) {
+    db.User.findAll({}).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
+
+  app.post("/api/user", function(req, res) {
+    db.User.create(req.body).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
+
+  app.put("/api/user/:id", function(req, res) {
+    db.User.update({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
+
+  app.delete("/api/user/:id", function(req, res) {
+    db.User.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
+
+  // Forum Routes=======================================
   app.get("/api/forums", function(req, res) {
     db.Forum.findAll({}).then(function(dbForum) {
       res.json(dbForum);
@@ -62,8 +47,8 @@ module.exports = function(app) {
         category: req.params.category
       }
     }).then(function(dbPost) {
-        res.json(dbPost);
-      });
+      res.json(dbPost);
+    });
   });
 
   // Get route for retrieving a single post
@@ -73,8 +58,8 @@ module.exports = function(app) {
         id: req.params.id
       }
     }).then(function(dbForum) {
-        res.json(dbForum);
-      });
+      res.json(dbForum);
+    });
   });
 
   // POST route for saving a new post
@@ -86,8 +71,8 @@ module.exports = function(app) {
       category: req.body.category,
       body: req.body.body
     }).then(function(dbForum) {
-        res.json(dbForum);
-      });
+      res.json(dbForum);
+    });
   });
 
   // DELETE route for deleting posts
@@ -97,19 +82,52 @@ module.exports = function(app) {
         id: req.params.id
       }
     }).then(function(dbForum) {
-        res.json(dbForum);
-      });
+      res.json(dbForum);
+    });
   });
 
   // PUT route for updating posts
   app.put("/api/forums", function(req, res) {
-    db.Forum.update(req.body,
-      {
-        where: {
-          id: req.body.id
-        }
-      }).then(function(dbForum) {
-        res.json(dbForum);
-      });
+    db.Forum.update(req.body, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(dbForum) {
+      res.json(dbForum);
+    });
+  });
+
+  // Routes Trails API
+  app.get("/api/trails", function(req, res) {
+    db.Trails.findAll({}).then(function(trailsResults) {
+      res.json(trailsResults);
+    });
+  });
+  app.get("/api/trails", function(req, res) {
+    db.Trails.findOne({
+      where: {
+        trailsId: req.body.trailId
+      }
+    }).then(function(trailsResults) {
+      res.json(trailsResults);
+    });
+  });
+  app.get("/api/trails", function(req, res) {
+    db.Trails.findOne({
+      where: {
+        rating: req.body.rating
+      }
+    }).then(function(trailsResults) {
+      res.json(trailsResults);
+    });
+  });
+  app.get("/api/trails", function(req, res) {
+    db.Trails.findOne({
+      where: {
+        length: req.body.trailLength
+      }
+    }).then(function(trailsResults) {
+      res.json(trailsResults);
+    });
   });
 };

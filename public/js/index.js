@@ -1,3 +1,4 @@
+require("dotenv")
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
@@ -6,20 +7,22 @@ var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  // saveExample: function(example) {
+  //   return $.ajax({
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     type: "POST",
+  //     url: "api/examples",
+  //     data: JSON.stringify(example)
+  //   });
+  // },
+  getTrails: function() {
     return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
+      url: "https://www.powderproject.com/data/" + process.env.POWDERKEY + "get-trails-by-id?ids=" + trailId,
       type: "GET"
+    }).then(function(response) {
+      console.log(response);
     });
   },
   deleteExample: function(id) {
@@ -95,5 +98,6 @@ var handleDeleteBtnClick = function() {
 };
 
 // Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
+// $submitBtn.on("click", handleFormSubmit);
+$submitBtn.on("click", API.getById);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
