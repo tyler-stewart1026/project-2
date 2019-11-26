@@ -1,85 +1,3 @@
-<<<<<<< HEAD
-module.exports = function(sequelize, DataTypes) {
-
-  var Users = sequelize.define("Users", {
-    uid: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        len: [1]
-      },
-      name: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        validate: {
-          len: [1, 100]
-        }
-      },
-
-
-    }
-  })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Define Trails Variable for API routes.
-var Trails = sequelize.define("Trails", {
-  trailId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    validate: {
-      len: [1]
-=======
 module.exports = function (sequelize, DataTypes) {
   var Users = sequelize.define("Users", {
     name: {
@@ -116,7 +34,6 @@ module.exports = function (sequelize, DataTypes) {
       validate: {
         len: [1, 100]
       }
->>>>>>> fc195f12e63990b85d30e5369526beb5410bb99e
     }
     // foreignKey: {
     //   type: DataTypes.STRING,
