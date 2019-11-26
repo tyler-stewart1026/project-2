@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 module.exports = function(sequelize, DataTypes) {
 
   var Users = sequelize.define("Users", {
@@ -78,50 +79,133 @@ var Trails = sequelize.define("Trails", {
     allowNull: false,
     validate: {
       len: [1]
+=======
+module.exports = function (sequelize, DataTypes) {
+  var Users = sequelize.define("Users", {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [1, 100]
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [1, 100]
+      }
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [1, 100]
+      }
+    },
+    ability: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [1, 100]
+      }
+    },
+    zipcode: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [1, 100]
+      }
+>>>>>>> fc195f12e63990b85d30e5369526beb5410bb99e
     }
-  },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: true,
-    validate: {
-      len: [1, 100]
+    // foreignKey: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    //   validate: {
+    //     len: [1, 100]
+    //   }
+    // }
+
+  })
+  return Users;
+
+  let Forum = sequelize.define("Forum", {
+    title: {
+      type: DataTypes.STRING,
+      notNull: true,
+      validate: {
+        len: [1, 100],
+        notEmpty: true
+      }
+    },
+    author: {
+      type: DataTypes.STRING,
+      notNull: true,
+      validate: {
+        len: [1, 50],
+        notEmpty: true
+      }
+    },
+    // category: {
+    //   type: DataTypes.STRING,
+    //   notNull: true,
+    //   validate: {
+    //     len: [1, 50],
+    //   },
+    //   defaultValue: "Skiing"
+    // },
+    body: {
+      type: DataTypes.STRING,
+      notNull: true,
+      validate: {
+        len: [1, 500],
+        notEmpty: true
+      }
     }
-  },
-  difficulty: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    validate: {
-      len: [1]
+  });
+  return Forum;
+
+  // Define Trails Variable for API routes.
+  var Trails = sequelize.define("Trails", {
+    trailId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [1, 100]
+      }
+    },
+    difficulty: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      validate: {
+        len: [1]
+      }
+    },
+    latLong: {
+      type: DataTypes.DECIMAL,
+      allowNull: true
+    },
+    length: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      validate: {
+        len: [1, 100]
+      }
+    },
+    rating: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      validate: {
+        len: [1, 100]
+      }
     }
-  },
-  latLong: {
-    type: DataTypes.DECIMAL,
-    allowNull: true
-  },
-  length: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    validate: {
-      len: [1, 100]
-    }
-  },
-  rating: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    validate: {
-      len: [1, 100]
-    }
-  }
-});
-return Trails;
+  });
+  return Trails;
 };
-
-
-
-
-
-
-
-
-
-
