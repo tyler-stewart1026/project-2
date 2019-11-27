@@ -7,16 +7,16 @@ var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  // saveExample: function(example) {
-  //   return $.ajax({
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     type: "POST",
-  //     url: "api/examples",
-  //     data: JSON.stringify(example)
-  //   });
-  // },
+  getCity: function() {
+    queryUrl = "http://www.mapquestapi.com/geocoding/v1/address?key=";
+    return $.ajax({
+      url: queryUrl + process.env.MAPKEY + "&location" + city,
+      type: "GET"
+    }).then(function(response) {
+      console.log(response);
+    });
+  },
+
   getTrails: function() {
     return $.ajax({
       url: "https://www.powderproject.com/data/" + process.env.POWDERKEY + "get-trails-by-id?ids=" + trailId,

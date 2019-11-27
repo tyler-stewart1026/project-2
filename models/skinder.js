@@ -63,14 +63,6 @@ module.exports = function (sequelize, DataTypes) {
         notEmpty: true
       }
     },
-    // category: {
-    //   type: DataTypes.STRING,
-    //   notNull: true,
-    //   validate: {
-    //     len: [1, 50],
-    //   },
-    //   defaultValue: "Skiing"
-    // },
     body: {
       type: DataTypes.STRING,
       notNull: true,
