@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 let config = {
     "development": {
       "username": "root",
