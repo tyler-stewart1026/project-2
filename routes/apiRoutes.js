@@ -2,14 +2,20 @@ var db = require("../models");
 
 module.exports = function(app) {
   app.get("/api/user", function(req, res) {
-    db.User.findAll({}).then(function(dbUser) {
+    db.Users.findAll({}).then(function(dbUser) {
       res.json(dbUser);
     });
   });
 
   app.post("/api/user", function(req, res) {
-    db.User.create(req.body).then(function(dbUser) {
-      res.json(dbUser);
+    db.Users.create({
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
+      ability: req.body.ability,
+      zipcode: req.body.zipcode
+    }).then(function(dbUsers) {
+      res.json(dbUsers);
     });
   });
 
