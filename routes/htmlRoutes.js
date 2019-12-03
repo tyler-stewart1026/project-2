@@ -1,27 +1,14 @@
 var db = require("../models");
 
-
 module.exports = function(app) {
-  // Load index page
+  // forum route loads forum.handlebars
   app.get("/", function(req, res) {
-    db.Users.findAll({})
-    .then(function(dbUsers) {
-        console.log(dbUsers)
-        let hbsObject = {
-            users: dbUsers
-        };
-        console.log(hbsObject)
-        res.render("index", hbsObject);
-    });
-  });
-
-
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.render("example", {
-        example: dbExample
-      });
+    db.Forum.findAll({}).then(function(dbForum) {
+      var hbsObject = {
+        forum: dbForum
+      };
+      console.log(hbsObject);
+      res.render("forum", hbsObject);
     });
   });
 
