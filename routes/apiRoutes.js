@@ -100,12 +100,29 @@ module.exports = function(app) {
   });
 
   // Route for getting lat/long by city===================
-  app.get("/api/cities", function(req, res) {
+  app.get("/api/cities/:location", function(req, res) {
+    console.log('working')
     var queryUrl =
       "http://www.mapquestapi.com/geocoding/v1/address?key=" +
       process.env.MAPKEY +
       "&location=" +
-      location;
+      req.params.location;
+    axios.get(queryUrl).then(function({data:{results}}) {
+      if(results.length === 0)
+        return {};
+      const [firstResult] = results;
+      const {locations} = firstResult;
+      if(locations.length === 0)
+        return {};
+      const [firstLocation] = locations;
+      const {latLng} = firstLocation;
+      res.json(latLng);
+    });
+
+  });
+
+  app.get("/api/test", function(req, res) {
+    console.log(placeSearch);
   });
 
   // Routes Trails API====================================
