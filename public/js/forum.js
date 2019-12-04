@@ -13,7 +13,7 @@ $(".create-form").on("submit", function(event) {
       .trim()
   };
 
-  $.ajax("/api/forumss", {
+  $.ajax("/api/forums", {
     type: "POST",
     data: newPost
   }).then(function() {

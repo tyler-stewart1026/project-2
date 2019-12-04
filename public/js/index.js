@@ -3,13 +3,14 @@ placeSearch({
   container: document.querySelector("#place-search-input")
 });
 
+
+
 // The API object contains methods for each kind of request we'll make
-var API = {
-  getCity: function() {
-    return $.ajax({
-      url: "api/cities/",
-      type: "GET"
-    });
+const API = {
+  getCity: function(location) {
+    const url = `api/cities/${location}`;
+    const type = 'GET';
+    return $.ajax({url,type});
   },
 
   getTrails: function() {
@@ -26,6 +27,20 @@ var API = {
     });
   }
 };
+
+$("#submitBtn").on('click',() =>{
+
+  const currentSearchVal = $("#place-search-input").val();
+  console.log(currentSearchVal)
+  if(currentSearchVal.length > 0){
+    API.getCity(currentSearchVal).then(res => {
+      console.log(res);
+    })
+    .catch(err =>{
+      console.log(err);
+    })
+  }
+});
 
 // refreshExamples gets new examples from the db and repopulates the list
 // var refreshExamples = function() {
