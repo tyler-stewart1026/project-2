@@ -2,6 +2,9 @@ var db = require("../models");
 var axios = require("axios");
 require("dotenv").config();
 
+var lat;
+var lng; 
+
 module.exports = function (app) {
   app.get("/api/user", function (req, res) {
     db.User.findAll({}).then(function (dbUser) {
@@ -45,17 +48,6 @@ module.exports = function (app) {
   app.get("/api/forums", function (req, res) {
     db.Forum.findAll({}).then(function (dbForum) {
       res.json(dbForum);
-    });
-  });
-
-  // Get route for returning posts of a specific category
-  app.get("/api/forums/category/:category", function (req, res) {
-    db.Forum.findAll({
-      where: {
-        category: req.params.category
-      }
-    }).then(function (dbPost) {
-      res.json(dbPost);
     });
   });
 
@@ -110,33 +102,82 @@ module.exports = function (app) {
     });
   });
 
-  // Routes Trails API
+  // Route for getting lat/long by city===================
+  app.get("/api/cities/:location", function (req, res) {
+    console.log('working')
+    var queryUrl =
+      "http://www.mapquestapi.com/geocoding/v1/address?key=" +
+      process.env.MAPKEY +
+      "&location=" +
+      req.params.location;
+    axios.get(queryUrl).then(function ({
+      data: {
+        results
+      }
+    }) {
+      if (results.length === 0)
+        return {};
+      const [firstResult] = results;
+      const {
+        locations
+      } = firstResult;
+      if (locations.length === 0)
+        return {};
+      const [firstLocation] = locations;
+      const {
+        latLng
+      } = firstLocation;
+      res.json(latLng);
+      // console.log("This is our lat: " + latLng.lat)
+      var lat = latLng.lat;
+      console.log(lat)
+      var lng = latLng.lng;
+      console.log(lng);
+      // console.log("This is our lon: " + latLng.lng)
+    });
+
+  });
+
+  app.get("/api/test", function (req, res) {
+    console.log(placeSearch);
+  });
+
+  // Routes Trails API====================================
   app.get("/api/trails", function (req, res) {
-    var queryUrl = "https://www.powderproject.com/data/key=" + process.env.POWDERKEY + "&get-trails?lat=40.027&lon=-105.251"
-    axios.get(queryUrl).then(function (response) {
-      console.log(response);
-      db.Trails.findAll({}).then(function (trailsResults) {
-        res.json(trailsResults);
-      });
+    var queryUrl =
+      "https://www.powderproject.com/data/get-trails?lat=" + lat + "&lon=" + lng + "&key=" + process.env.POWDERKEY;
+    console.log("This is my query, BITCH!" + queryUrl)
+    axios.get(queryUrl).then(function ({
+      data
+    }) {
+      for (var i = 0; i < data.trails.length; i++) {
+
+        console.log("response: " + data.trails[i].name);
+        var trailName = data.trails[i].name
+        // console.log("response: " + data.trails[i].type);
+      }
+    }).catch(function (error) {
+      if (error.response) {
+        console.log("Something went wrong: " + error)
+      }
     })
   });
 
-  app.get("/api/trails", function (req, res) {
-    db.Trails.findAll({
-      where: {
-        rating: req.body.rating
-      }
-    }).then(function (trailsResults) {
-      res.json(trailsResults);
-    });
-  });
-  app.get("/api/trails", function (req, res) {
-    db.Trails.findAll({
-      where: {
-        length: req.body.trailLength
-      }
-    }).then(function (trailsResults) {
-      res.json(trailsResults);
-    });
-  });
+  // app.get("/api/trails", function(req, res) {
+  //   db.Trails.findAll({
+  //     where: {
+  //       rating: req.body.rating
+  //     }
+  //   }).then(function(trailsResults) {
+  //     res.json(trailsResults);
+  //   });
+  // });
+  // app.get("/api/trails", function(req, res) {
+  //   db.Trails.findAll({
+  //     where: {
+  //       length: req.body.trailLength
+  //     }
+  //   }).then(function(trailsResults) {
+  //     res.json(trailsResults);
+  //   });
 };

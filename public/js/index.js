@@ -1,19 +1,16 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+placeSearch({
+  key: "hfKnbDdg4J5HEbbe3NoAbdudtAa7DAxG",
+  container: document.querySelector("#place-search-input")
+});
+
+
 
 // The API object contains methods for each kind of request we'll make
-var API = {
-  getCity: function() {
-    queryUrl = "http://www.mapquestapi.com/geocoding/v1/address?key=";
-    return $.ajax({
-      url: queryUrl + process.env.MAPKEY + "&location" + city,
-      type: "GET"
-    }).then(function(response) {
-      console.log(response);
-    });
+const API = {
+  getCity: function(location) {
+    const url = `api/cities/${location}`;
+    const type = 'GET';
+    return $.ajax({url,type});
   },
 
   getTrails: function() {
@@ -22,6 +19,7 @@ var API = {
       type: "GET"
     });
   },
+
   deleteExample: function(id) {
     return $.ajax({
       url: "api/examples/" + id,
@@ -29,6 +27,22 @@ var API = {
     });
   }
 };
+
+$("#submitBtn").on('click',() =>{
+  event.preventDefault();
+  API.getTrails();
+  console.log("button click")
+  const currentSearchVal = $("#place-search-input").val();
+  console.log(currentSearchVal)
+  if(currentSearchVal.length > 0){
+    API.getCity(currentSearchVal).then(res => {
+      console.log(res);
+    })
+    .catch(err =>{
+      console.log(err);
+    })
+  }
+});
 
 // refreshExamples gets new examples from the db and repopulates the list
 // var refreshExamples = function() {
@@ -96,9 +110,5 @@ var API = {
 
 // Add event listeners to the submit and delete buttons
 // $submitBtn.on("click", handleFormSubmit);
-$(document).on("click", "#submitBtn", function() {
-  event.preventDefault();
 
-  console.log("click");
-});
 // $exampleList.on("click", ".delete", handleDeleteBtnClick);
