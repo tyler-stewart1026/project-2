@@ -12,6 +12,18 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/user/:id", function(req, res) {
+    db.User.findOne({
+      where: { id: req.params.id}
+    }).then(function(dbUser) {
+      var hbsObject = {
+        user: dbUser
+      };
+      console.log(hbsObject);
+      res.render("user", hbsObject);
+    });
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
