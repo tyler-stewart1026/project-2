@@ -29,7 +29,9 @@ const API = {
 };
 
 $("#submitBtn").on('click',() =>{
-
+  event.preventDefault();
+  API.getTrails();
+  console.log("button click")
   const currentSearchVal = $("#place-search-input").val();
   console.log(currentSearchVal)
   if(currentSearchVal.length > 0){
@@ -108,9 +110,5 @@ $("#submitBtn").on('click',() =>{
 
 // Add event listeners to the submit and delete buttons
 // $submitBtn.on("click", handleFormSubmit);
-$(document).on("click", "#submitBtn", function() {
-  event.preventDefault();
-  // API.getTrails();
-  console.log("click");
-});
+
 // $exampleList.on("click", ".delete", handleDeleteBtnClick);
