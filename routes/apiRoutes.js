@@ -138,10 +138,6 @@ module.exports = function (app) {
 
   });
 
-  app.get("/api/test", function (req, res) {
-    console.log(placeSearch);
-  });
-
   // Routes Trails API====================================
   app.get("/api/trails", function (req, res) {
     var queryUrl =
