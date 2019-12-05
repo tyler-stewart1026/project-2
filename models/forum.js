@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       notNull: true,
       validate: {
-        len: [1, 100],
+        len: [0, 100],
         notEmpty: true
       }
     },
@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       notNull: true,
       validate: {
-        len: [1, 50],
+        len: [0, 50],
         notEmpty: true
       }
     },
@@ -28,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       notNull: true,
       validate: {
-        len: [1, 500],
+        len: [0, 500],
         notEmpty: true
       }
     }
