@@ -4,6 +4,7 @@ require("dotenv").config();
 
 var lat;
 var lng;
+var trailName;
 
 module.exports = function (app) {
   app.get("/api/user", function (req, res) {
@@ -109,17 +110,23 @@ module.exports = function (app) {
   });
 
   // Route for getting lat/long by city===================
-  app.get("/api/cities/:location", function(req, res) {
+  app.get("/api/cities/:location", function (req, res) {
     console.log("working");
     var queryUrl =
       "http://www.mapquestapi.com/geocoding/v1/address?key=" +
       process.env.MAPKEY +
       "&location=" +
       req.params.location;
-    axios.get(queryUrl).then(function({ data: { results } }) {
+    axios.get(queryUrl).then(function ({
+      data: {
+        results
+      }
+    }) {
       if (results.length === 0) return {};
       const [firstResult] = results;
-      const { locations } = firstResult;
+      const {
+        locations
+      } = firstResult;
       if (locations.length === 0) return {};
       const [firstLocation] = locations;
       const { latLng } = firstLocation;
@@ -130,34 +137,42 @@ module.exports = function (app) {
       var lng = latLng.lng;
       console.log(lng);
       // console.log("This is our lon: " + latLng.lng)
+
+      var queryUrlMaps =
+        "https://www.powderproject.com/data/get-trails?lat=" +
+        lat +
+        "&lon=" +
+        lng +
+        "&key=" +
+        process.env.POWDERKEY;
+      return axios
+        .get(queryUrlMaps)
+        .then(function ({
+          data
+        }) {
+          console.log(queryUrlMaps + "query URL");
+          for (var i = 0; i < data.trails.length; i++) {
+            console.log("response: " + data.trails[i].name);
+            
+            var trailName = data.trails[i].name;
+            // console.log("This is the trialName: " + trailName);
+          }
+          
+        })
+        .catch(function (error) {
+          if (error.response) {
+            console.log("Something went wrong: " + error);
+          }
+        });
     });
   });
 
-  // Routes Trails API====================================
-  app.get("/api/trails", function(req, res) {
-    var queryUrl =
-      "https://www.powderproject.com/data/get-trails?lat=" +
-      lat +
-      "&lon=" +
-      lng +
-      "&key=" +
-      process.env.POWDERKEY;
-    console.log("This is my query, BITCH!" + queryUrl);
-    axios
-      .get(queryUrl)
-      .then(function({ data }) {
-        for (var i = 0; i < data.trails.length; i++) {
-          console.log("response: " + data.trails[i].name);
-          var trailName = data.trails[i].name;
-          // console.log("response: " + data.trails[i].type);
-        }
-      })
-      .catch(function(error) {
-        if (error.response) {
-          console.log("Something went wrong: " + error);
-        }
-      });
+  app.get("/api/test", function (req, res) {
+    console.log(placeSearch);
   });
+
+  // Routes Trails API====================================
+  app.get("/api/trails", function (req, res) {});
 
   // app.get("/api/trails", function(req, res) {
   //   db.Trails.findAll({

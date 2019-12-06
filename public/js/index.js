@@ -1,3 +1,4 @@
+// CANT HIDE IT, Please search.js requires it like so.
 placeSearch({
   key: "hfKnbDdg4J5HEbbe3NoAbdudtAa7DAxG",
   container: document.querySelector("#place-search-input")
@@ -48,6 +49,13 @@ $("#submitBtn").on("click", () => {
   }
   API.getTrails();
 });
+
+
+// Modal Activation
+$('#signUpModal').on('shown.bs.modal', function () {
+  $('#signUp').trigger('focus')
+})
+
 
 // refreshExamples gets new examples from the db and repopulates the list
 // var refreshExamples = function() {
