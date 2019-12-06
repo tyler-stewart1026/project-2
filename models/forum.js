@@ -8,22 +8,6 @@ module.exports = function(sequelize, DataTypes) {
         notEmpty: true
       }
     },
-    author: {
-      type: DataTypes.STRING,
-      notNull: true,
-      validate: {
-        len: [0, 50],
-        notEmpty: true
-      }
-    },
-    // category: {
-    //   type: DataTypes.STRING,
-    //   notNull: true,
-    //   validate: {
-    //     len: [1, 50],
-    //   },
-    //   defaultValue: "Skiing"
-    // },
     body: {
       type: DataTypes.STRING,
       notNull: true,
@@ -33,6 +17,16 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+
+  // Forum.associate = function(models) {
+  //   // We're saying that a Forum should belong to an User
+  //   // A Forum can't be created without an User due to the foreign key constraint
+  //   Forum.belongsTo(models.User, {
+  //     foreignKey: {
+  //       allowNull: false
+  //     }
+  //   });
+  // };
+
   return Forum;
 };
-;
