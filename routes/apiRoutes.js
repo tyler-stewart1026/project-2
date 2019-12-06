@@ -5,15 +5,15 @@ require("dotenv").config();
 var lat;
 var lng;
 
-module.exports = function(app) {
-  app.get("/api/user", function(req, res) {
-    db.Users.findAll({}).then(function(dbUser) {
+module.exports = function (app) {
+  app.get("/api/user", function (req, res) {
+    db.User.findAll({}).then(function (dbUser) {
       res.json(dbUser);
     });
   });
 
-  app.post("/api/user", function(req, res) {
-    db.Users.create({
+  app.post("/api/user", function (req, res) {
+    db.User.create({
       name: req.body.name,
       email: req.body.email,
       phone: req.body.phone,
