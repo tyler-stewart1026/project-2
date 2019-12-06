@@ -30,6 +30,7 @@ module.exports = function(app) {
     db.User.findOne({
       where: { id: req.params.id}
     }).then(function(dbUser) {
+      //console.log('dbUser', dbUser);
       var hbsObject = {
         user: dbUser
       };
@@ -37,6 +38,10 @@ module.exports = function(app) {
       res.render("user", hbsObject);
     });
   });
+
+  app.get("/create-user", function(req, res) {
+      res.render("create-user");
+    });
 
   app.get("/trails", function(req, res) {
     db.Trails.findAll({}).then(function(dbTrails) {
