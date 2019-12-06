@@ -8,7 +8,7 @@ let config = {
       "port": 3306,
       "dialect": "mysql",
       "operatorsAliases": false
-    },
+    }, 
     "test": {
       "username": "root",
       "password": process.env.DB_PASSWORD,
