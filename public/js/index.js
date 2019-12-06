@@ -1,7 +1,7 @@
-// placeSearch({
-//   key: "hfKnbDdg4J5HEbbe3NoAbdudtAa7DAxG",
-//   container: document.querySelector("#place-search-input")
-// });
+placeSearch({
+  key: "hfKnbDdg4J5HEbbe3NoAbdudtAa7DAxG",
+  container: document.querySelector("#place-search-input")
+});
 
 // The API object contains methods for each kind of request we'll make
 const API = {
