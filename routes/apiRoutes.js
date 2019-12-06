@@ -154,7 +154,7 @@ module.exports = function (app) {
           for (var i = 0; i < data.trails.length; i++) {
             console.log("response: " + data.trails[i].name);
             
-            var trailName = data.trails[i].name;
+            trailName = data.trails[i].name;
             // console.log("This is the trialName: " + trailName);
           }
           
@@ -167,9 +167,9 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/test", function (req, res) {
-    console.log(placeSearch);
-  });
+  // app.get("/api/test", function (req, res) {
+  //   console.log(placeSearch);
+  // });
 
   // Routes Trails API====================================
   app.get("/api/trails", function (req, res) {});

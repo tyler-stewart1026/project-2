@@ -1,10 +1,20 @@
-var forumContainer = $(".forum-container");
-var posts;
-
 $(document).ready(function() {
-  function getPosts() {
+  // blogContainer holds all of our posts
+  var forumContainer = $(".forum-container");
+  var postCategorySelect = $("#category");
+  // Click events for the edit and delete buttons
+  $(document).on("click", "button.delete", handlePostDelete);
+  $(document).on("click", "button.edit", handlePostEdit);
+  var posts;
+
+  // This function grabs posts from the database and updates the view
+  function getPosts(category) {
+    var categoryString = category || "";
+    if (categoryString) {
+      categoryString = "/category/" + categoryString;
+    }
     $.get("/api/forums", function(data) {
-      console.log("Posts ", data);
+      console.log("Posts", data);
       posts = data;
       if (!posts || !posts.length) {
         displayEmpty();
@@ -14,19 +24,18 @@ $(document).ready(function() {
     });
   }
 
-  getPosts();
-
-  // This function displays a message when there are no posts
-  function displayEmpty() {
-    forumContainer.empty();
-    var messageH2 = $("<h2>");
-    messageH2.css({ "text-align": "center", "margin-top": "50px" });
-    messageH2.html(
-      "No posts yet for this category, navigate <a href='/cms'>here</a> in order to create a new post."
-    );
-    forumContainer.append(messageH2);
+  // This function does an API call to delete posts
+  function deletePost(id) {
+    $.ajax({
+      method: "DELETE",
+      url: "/api/forums/" + id
+    }).then(function() {
+      getPosts(postCategorySelect.val());
+    });
   }
 
+  // Getting the initial list of posts
+  getPosts();
   // InitializeRows handles appending all of our constructed post HTML inside
   // blogContainer
   function initializeRows() {
@@ -79,41 +88,34 @@ $(document).ready(function() {
     return newPostCard;
   }
 
-  $(".delete").on("click", function() {
-    var id = $(this).data("id");
+  // This function figures out which post we want to delete and then calls
+  // deletePost
+  function handlePostDelete() {
+    var currentPost = $(this)
+      .parent()
+      .parent()
+      .data("post");
+    deletePost(currentPost.id);
+  }
 
-    $.ajax("/api/forums/" + id, {
-      type: "DELETE"
-    }).then(function() {
-      console.log("deleted post", id);
-      location.reload();
-    });
-  });
-});
+  // This function figures out which post we want to edit and takes it to the
+  // Appropriate url
+  function handlePostEdit() {
+    var currentPost = $(this)
+      .parent()
+      .parent()
+      .data("post");
+    window.location.href = "/post?post_id=" + currentPost.id;
+  }
 
-$("#forum-submit").on("click", function(event) {
-  event.preventDefault();
-
-  var titleInput = $("#title")
-    .val()
-    .trim();
-  var authorInput = $("#author")
-    .val()
-    .trim();
-  var bodyInput = $("#body")
-    .val()
-    .trim();
-
-  var newPost = {
-    title: titleInput,
-    author: authorInput,
-    body: bodyInput
-  };
-
-  $.ajax("/api/forums", {
-    type: "POST",
-    data: newPost
-  }).then(function() {
-    location.reload();
-  });
+  // This function displays a message when there are no posts
+  function displayEmpty() {
+    forumContainer.empty();
+    var messageH2 = $("<h2>");
+    messageH2.css({ "text-align": "center", "margin-top": "50px" });
+    messageH2.html(
+      "No posts yet, navigate <a href='/post'>here</a> in order to create a new post."
+    );
+    forumContainer.append(messageH2);
+  }
 });

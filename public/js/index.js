@@ -1,4 +1,4 @@
-// CANT HIDE IT, Please search.js requires it like so.
+// CANT HIDE IT, Place search.js requires it like so.
 placeSearch({
   key: "hfKnbDdg4J5HEbbe3NoAbdudtAa7DAxG",
   container: document.querySelector("#place-search-input")
@@ -12,12 +12,12 @@ const API = {
     return $.ajax({ url, type });
   },
 
-  getTrails: function() {
-    return $.ajax({
-      url: "api/trails/",
-      type: "GET"
-    });
-  },
+  // getTrails: function() {
+  //   return $.ajax({
+  //     url: "api/trails/",
+  //     type: "GET"
+  //   });
+  // },
 
   // getPosts: function() {
   //   const url = "api/forums/";
@@ -35,7 +35,7 @@ const API = {
 
 $("#submitBtn").on("click", () => {
   event.preventDefault();
-  console.log("button click");
+  // sconsole.log("button click");
   const currentSearchVal = $("#place-search-input").val();
   console.log(currentSearchVal);
   if (currentSearchVal.length > 0) {
@@ -47,7 +47,7 @@ $("#submitBtn").on("click", () => {
         console.log(err);
       });
   }
-  API.getTrails();
+  // API.getTrails()
 });
 
 

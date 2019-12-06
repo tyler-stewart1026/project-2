@@ -1,13 +1,17 @@
 var db = require("../models");
 
-module.exports = function (app) {
+module.exports = function(app) {
   // forum route loads forum.handlebars
-  app.get("/", function (req, res) {
+  app.get("/", function(req, res) {
     res.render("index");
   });
 
-  app.get("/forum", function (req, res) {
-    db.Forum.findAll({}).then(function (dbForum) {
+  app.get("/post", function(req, res) {
+    res.render("post");
+  });
+
+  app.get("/forum", function(req, res) {
+    db.Forum.findAll({}).then(function(dbForum) {
       var hbsObject = {
         forum: dbForum
       };
@@ -16,8 +20,8 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/user", function (req, res) {
-    db.User.findAll({}).then(function (dbUser) {
+  app.get("/user", function(req, res) {
+    db.User.findAll({}).then(function(dbUser) {
       var hbsObject = {
         users: dbUser
       };
@@ -26,12 +30,12 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/user/:id", function (req, res) {
+  app.get("/user/:id", function(req, res) {
     db.User.findOne({
       where: {
         id: req.params.id
       }
-    }).then(function (dbUser) {
+    }).then(function(dbUser) {
       var hbsObject = {
         user: dbUser
       };
@@ -40,14 +44,14 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/trails", function (req, res) {
-    db.Trails.findAll({}).then(function () {
+  app.get("/trails", function(req, res) {
+    db.Trails.findAll({}).then(function() {
       var hbsObject = {
         trailName: "Tyler trail",
         trailLength: "0.5",
         trailDiff: "Hard AF",
         rating: "is good"
-      }
+      };
       console.log(hbsObject);
       res.render("index", hbsObject);
     });
