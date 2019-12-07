@@ -4,16 +4,16 @@ require("dotenv").config();
 
 var lat;
 var lng;
-var trailName;
+var trailName = [];
 
-module.exports = function (app) {
-  app.get("/api/user", function (req, res) {
-    db.User.findAll({}).then(function (dbUser) {
+module.exports = function(app) {
+  app.get("/api/user", function(req, res) {
+    db.User.findAll({}).then(function(dbUser) {
       res.json(dbUser);
     });
   });
 
-  app.post("/api/user", function (req, res) {
+  app.post("/api/user", function(req, res) {
     db.User.create({
       name: req.body.name,
       email: req.body.email,
@@ -110,34 +110,28 @@ module.exports = function (app) {
   });
 
   // Route for getting lat/long by city===================
-  app.get("/api/cities/:location", function (req, res) {
+  app.get("/api/cities/:location", function(req, res) {
+    var responseTempObj = {}
     console.log("working");
     var queryUrl =
       "http://www.mapquestapi.com/geocoding/v1/address?key=" +
       process.env.MAPKEY +
       "&location=" +
       req.params.location;
-    axios.get(queryUrl).then(function ({
-      data: {
-        results
-      }
-    }) {
+    axios.get(queryUrl).then(function({data: {results}}) {
       if (results.length === 0) return {};
       const [firstResult] = results;
-      const {
-        locations
-      } = firstResult;
+      const { locations } = firstResult;
       if (locations.length === 0) return {};
       const [firstLocation] = locations;
       const { latLng } = firstLocation;
-      res.json(latLng);
       // console.log("This is our lat: " + latLng.lat)
       var lat = latLng.lat;
       console.log(lat);
       var lng = latLng.lng;
       console.log(lng);
       // console.log("This is our lon: " + latLng.lng)
-
+      responseTempObj.latLng = latLng
       var queryUrlMaps =
         "https://www.powderproject.com/data/get-trails?lat=" +
         lat +
@@ -147,19 +141,18 @@ module.exports = function (app) {
         process.env.POWDERKEY;
       return axios
         .get(queryUrlMaps)
-        .then(function ({
-          data
-        }) {
+        .then(function({ data }) {
           console.log(queryUrlMaps + "query URL");
           for (var i = 0; i < data.trails.length; i++) {
             console.log("response: " + data.trails[i].name);
-            
-            trailName = data.trails[i].name;
+
+            trailName.push(data.trails[i].name);
             // console.log("This is the trialName: " + trailName);
           }
-          
+          responseTempObj.trails = data.trails;
+          res.json(responseTempObj)
         })
-        .catch(function (error) {
+        .catch(function(error) {
           if (error.response) {
             console.log("Something went wrong: " + error);
           }
@@ -172,7 +165,7 @@ module.exports = function (app) {
   // });
 
   // Routes Trails API====================================
-  app.get("/api/trails", function (req, res) {});
+  app.get("/api/trails", function(req, res) {});
 
   // app.get("/api/trails", function(req, res) {
   //   db.Trails.findAll({
