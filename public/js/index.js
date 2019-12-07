@@ -47,7 +47,11 @@ $("#submitBtn").on("click", () => {
         console.log(err);
       });
   }
-  // API.getTrails()
+  // API.getTrails().then(trailResult => {
+  //   console.log(trailResult)
+  // }).catch(err => {
+  //   console.log(err)
+  // })
 });
 
 
