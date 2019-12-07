@@ -44,6 +44,10 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/create-user", function(req, res) {
+      res.render("create-user");
+    });
+
   app.get("/trails", function (req, res) {
     db.Trails.findAll({}).then(function () {
       var hbsObject = {
