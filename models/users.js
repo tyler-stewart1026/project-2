@@ -21,18 +21,32 @@ module.exports = function(sequelize, DataTypes) {
         len: [1, 100]
       }
     },
-    ability: {
+    zipcode: {
       type: DataTypes.STRING,
       allowNull: true,
       validate: {
         len: [1, 100]
       }
     },
-    zipcode: {
+    type: {
       type: DataTypes.STRING,
       allowNull: true,
       validate: {
         len: [1, 100]
+      }
+    },
+    ability: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [1, 10]
+      }
+    },
+    powderhound: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [1, 10]
       }
     }
   });
