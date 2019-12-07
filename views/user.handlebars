@@ -7,18 +7,18 @@
           <p>
             <strong>Name</strong>: {{user.name}}</p>
           <p>
-          <p>
-            <strong>Email</strong>: {{user.email}}</p>
-                      <p>
-            <strong>Phone</strong>: {{user.phone}}</p>
-                      <p>
-            <strong>Zipcode</strong>: {{user.zipcode}}</p>
-                                  <p>
-            <strong>Ability</strong>: {{user.ability}}</p>
             <p>
-            <strong>Type</strong>: {{user.type}}</p>
+              <strong>Email</strong>: {{user.email}}</p>
             <p>
-            <strong>Powderhound</strong>: {{user.powderhound}}</p>
+              <strong>Phone</strong>: {{user.phone}}</p>
+            <p>
+              <strong>Zipcode</strong>: {{user.zipcode}}</p>
+            <p>
+              <strong>Ability</strong>: {{user.ability}}</p>
+            <p>
+              <strong>Type</strong>: {{user.type}}</p>
+            <p>
+              <strong>Powderhound</strong>: {{user.powderhound}}</p>
 
             <a href="/">← Back To Home</a>
         </div>
@@ -27,7 +27,68 @@
   </div>
 </div>
 
-<div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="matchModalLabel" aria-hidden="true">
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <div class="author-container">
+      <h1>My Friends</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th># of Posts</th>
+            <th>See Author's Posts</th>
+            <th>New Post</th>
+            <th>Delete Author</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="form-row">
+            <form id="author-form">
+              <td colspan="4">
+                <input placeholder="Enter a name" id="author-name" type="text" />
+              </td>
+              <td><button type="submit" class="btn btn-success">Create Author</button>
+              </td>
+            </form>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <div class="author-container">
+      <h1>My Forum</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th># of Posts</th>
+            <th>See Author's Posts</th>
+            <th>New Post</th>
+            <th>Delete Author</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="form-row">
+            <form id="author-form">
+              <td colspan="4">
+                <input placeholder="Enter a name" id="author-name" type="text" />
+              </td>
+              <td><button type="submit" class="btn btn-success">Create Author</button>
+              </td>
+            </form>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="matchModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -38,7 +99,7 @@
       </div>
       <div class="modal-body">
         <h4 id="match-name"></h4>
-        <div><img id="match-photo" src="" width="100" /></div>  
+        <div><img id="match-photo" src="" width="100" /></div>
       </div>
     </div>
   </div>
