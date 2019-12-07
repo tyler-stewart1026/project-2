@@ -20,75 +20,81 @@ module.exports = function (app) {
       phone: req.body.phone,
       ability: req.body.ability,
       zipcode: req.body.zipcode
-    }).then(function (dbUsers) {
+    }).then(function(dbUsers) {
       res.json(dbUsers);
     });
   });
 
-  app.put("/api/user/:id", function (req, res) {
+  app.put("/api/user/:id", function(req, res) {
     db.User.update({
       where: {
         id: req.params.id
       }
-    }).then(function (dbUser) {
+    }).then(function(dbUser) {
       res.json(dbUser);
     });
   });
 
-  app.delete("/api/user/:id", function (req, res) {
+  app.delete("/api/user/:id", function(req, res) {
     db.User.destroy({
       where: {
         id: req.params.id
       }
-    }).then(function (dbUser) {
+    }).then(function(dbUser) {
       res.json(dbUser);
     });
   });
 
   // Forum Routes=======================================
-  app.get("/api/forums", function (req, res) {
-    db.Forum.findAll({}).then(function (dbForum) {
+  app.get("/api/forums", function(req, res) {
+    db.Forum.findAll({}).then(function(dbForum) {
       res.json(dbForum);
     });
   });
 
   // Get route for retrieving a single post
-  app.get("/api/forums/:id", function (req, res) {
+  app.get("/api/forums/:id", function(req, res) {
     db.Forum.findOne({
       where: {
         id: req.params.id
       }
-    }).then(function (dbForum) {
+    }).then(function(dbForum) {
       res.json(dbForum);
     });
   });
 
   // POST route for saving a new post
-  app.post("/api/forums", function (req, res) {
+  app.post("/api/forums", function(req, res) {
     console.log(req.body);
     db.Forum.create({
       title: req.body.title,
       author: req.body.author,
       category: req.body.category,
       body: req.body.body
-    }).then(function (dbForum) {
-      res.json(dbForum);
-    });
+    })
+      .then(function(dbForum) {
+        res.json(dbForum);
+      })
+      .catch(function(error) {
+        if (error) {
+          console.log("Something went wrong: " + error);
+        }
+      });
   });
 
   // DELETE route for deleting posts
-  app.delete("/api/forums/:id", function (req, res) {
+  app.delete("/api/forums/:id", function(req, res) {
     db.Forum.destroy({
       where: {
         id: req.params.id
       }
-    }).then(function (dbForum) {
+    }).then(function(dbForum) {
       res.json(dbForum);
     });
   });
 
   // PUT route for updating posts
-  app.put("/api/forums", function (req, res) {
+  app.put("/api/forums", function(req, res) {
     var tempObj = {
       title: req.body.title,
       author: req.body.author,
@@ -98,7 +104,7 @@ module.exports = function (app) {
       where: {
         id: req.body.id
       }
-    }).then(function (dbForum) {
+    }).then(function(dbForum) {
       res.json(dbForum);
     });
   });
@@ -123,9 +129,7 @@ module.exports = function (app) {
       } = firstResult;
       if (locations.length === 0) return {};
       const [firstLocation] = locations;
-      const {
-        latLng
-      } = firstLocation;
+      const { latLng } = firstLocation;
       res.json(latLng);
       // console.log("This is our lat: " + latLng.lat)
       var lat = latLng.lat;
@@ -150,7 +154,7 @@ module.exports = function (app) {
           for (var i = 0; i < data.trails.length; i++) {
             console.log("response: " + data.trails[i].name);
             
-            var trailName = data.trails[i].name;
+            trailName = data.trails[i].name;
             // console.log("This is the trialName: " + trailName);
           }
           
@@ -163,9 +167,9 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/test", function (req, res) {
-    console.log(placeSearch);
-  });
+  // app.get("/api/test", function (req, res) {
+  //   console.log(placeSearch);
+  // });
 
   // Routes Trails API====================================
   app.get("/api/trails", function (req, res) {});

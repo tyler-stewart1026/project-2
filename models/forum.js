@@ -4,35 +4,29 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       notNull: true,
       validate: {
-        len: [1, 100],
+        len: [0, 100],
         notEmpty: true
       }
     },
-    author: {
-      type: DataTypes.STRING,
-      notNull: true,
-      validate: {
-        len: [1, 50],
-        notEmpty: true
-      }
-    },
-    // category: {
-    //   type: DataTypes.STRING,
-    //   notNull: true,
-    //   validate: {
-    //     len: [1, 50],
-    //   },
-    //   defaultValue: "Skiing"
-    // },
     body: {
       type: DataTypes.STRING,
       notNull: true,
       validate: {
-        len: [1, 500],
+        len: [0, 500],
         notEmpty: true
       }
     }
   });
+
+  // Forum.associate = function(models) {
+  //   // We're saying that a Forum should belong to an User
+  //   // A Forum can't be created without an User due to the foreign key constraint
+  //   Forum.belongsTo(models.User, {
+  //     foreignKey: {
+  //       allowNull: false
+  //     }
+  //   });
+  // };
+
   return Forum;
 };
-;
