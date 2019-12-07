@@ -44,17 +44,12 @@ module.exports = function(app) {
     });
   });
 
-<<<<<<< HEAD
   app.get("/create-user", function(req, res) {
       res.render("create-user");
     });
 
   app.get("/trails", function (req, res) {
     db.Trails.findAll({}).then(function () {
-=======
-  app.get("/trails", function(req, res) {
-    db.Trails.findAll({}).then(function() {
->>>>>>> 1598b626ff2d82d69b278bbd82d1365813408b6f
       var hbsObject = {
         trailName: "Tyler trail",
         trailLength: "0.5",

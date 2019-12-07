@@ -18,10 +18,13 @@ module.exports = function (app) {
       name: req.body.name,
       email: req.body.email,
       phone: req.body.phone,
+      zipcode: req.body.zipcode,
       ability: req.body.ability,
-      zipcode: req.body.zipcode
+      type: req.body.type,
+      powderhound: req.body.powderhound
     }).then(function(dbUsers) {
       res.json(dbUsers);
+
     });
   });
 
