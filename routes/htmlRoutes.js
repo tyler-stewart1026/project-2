@@ -28,16 +28,10 @@ module.exports = function (app) {
 
   app.get("/user/:id", function (req, res) {
     db.User.findOne({
-<<<<<<< HEAD
-      where: { id: req.params.id}
-    }).then(function(dbUser) {
-      //console.log('dbUser', dbUser);
-=======
       where: {
         id: req.params.id
       }
     }).then(function (dbUser) {
->>>>>>> 006d5e2860fe1e084b30a70840701b7e4dec3c36
       var hbsObject = {
         user: dbUser
       };
@@ -46,17 +40,12 @@ module.exports = function (app) {
     });
   });
 
-<<<<<<< HEAD
   app.get("/create-user", function(req, res) {
       res.render("create-user");
     });
 
-  app.get("/trails", function(req, res) {
-    db.Trails.findAll({}).then(function(dbTrails) {
-=======
   app.get("/trails", function (req, res) {
     db.Trails.findAll({}).then(function () {
->>>>>>> 006d5e2860fe1e084b30a70840701b7e4dec3c36
       var hbsObject = {
         trailName: "Tyler trail",
         trailLength: "0.5",
