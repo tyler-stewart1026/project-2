@@ -50,23 +50,30 @@ $(document).ready(function() {
   // This function constructs a post's HTML
   function createNewRow(post) {
     var newPostCard = $("<div>");
-    newPostCard.addClass("card");
+    newPostCard.addClass("card mb-5");
     var newPostCardHeading = $("<div>");
     newPostCardHeading.addClass("card-header");
     var deleteBtn = $("<button>");
     deleteBtn.text("x");
-    deleteBtn.addClass("delete btn btn-danger");
+    deleteBtn.addClass("delete btn btn-info");
+    deleteBtn.css({
+      float: "right"
+    });
     var editBtn = $("<button>");
     editBtn.text("EDIT");
     editBtn.addClass("edit btn btn-default");
+    editBtn.css({
+      float: "right"
+    });
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
-    var newPostCategory = $("<h5>");
-    newPostCategory.text(post.category);
-    newPostCategory.css({
+    var newPostAuthor = $("<h5>");
+    // need to update 
+    newPostAuthor.text("Tracks by: " + post.category);
+    newPostAuthor.css({
       float: "right",
-      "font-weight": "700",
-      "margin-top": "-15px"
+      color: "blue",
+      "margin-top": "15px"
     });
     var newPostCardBody = $("<div>");
     newPostCardBody.addClass("card-body");
@@ -80,7 +87,7 @@ $(document).ready(function() {
     newPostCardHeading.append(deleteBtn);
     newPostCardHeading.append(editBtn);
     newPostCardHeading.append(newPostTitle);
-    newPostCardHeading.append(newPostCategory);
+    newPostCardHeading.append(newPostAuthor);
     newPostCardBody.append(newPostBody);
     newPostCard.append(newPostCardHeading);
     newPostCard.append(newPostCardBody);
@@ -119,3 +126,121 @@ $(document).ready(function() {
     forumContainer.append(messageH2);
   }
 });
+
+// Snow animation
+(function() {
+  var requestAnimationFrame =
+    window.requestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    function(callback) {
+      window.setTimeout(callback, 1000 / 60);
+    };
+  window.requestAnimationFrame = requestAnimationFrame;
+})();
+
+var flakes = [],
+  canvas = document.getElementById("canvas"),
+  ctx = canvas.getContext("2d"),
+  flakeCount = 400,
+  mX = -100,
+  mY = -100;
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+function snow() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (var i = 0; i < flakeCount; i++) {
+    var flake = flakes[i],
+      x = mX,
+      y = mY,
+      minDist = 150,
+      x2 = flake.x,
+      y2 = flake.y;
+
+    var dist = Math.sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y)),
+      dx = x2 - x,
+      dy = y2 - y;
+
+    if (dist < minDist) {
+      var force = minDist / (dist * dist),
+        xcomp = (x - x2) / dist,
+        ycomp = (y - y2) / dist,
+        deltaV = force / 2;
+
+      flake.velX -= deltaV * xcomp;
+      flake.velY -= deltaV * ycomp;
+    } else {
+      flake.velX *= 0.98;
+      if (flake.velY <= flake.speed) {
+        flake.velY = flake.speed;
+      }
+      flake.velX += Math.cos((flake.step += 0.05)) * flake.stepSize;
+    }
+
+    ctx.fillStyle = "rgba(255,255,255," + flake.opacity + ")";
+    flake.y += flake.velY;
+    flake.x += flake.velX;
+
+    if (flake.y >= canvas.height || flake.y <= 0) {
+      reset(flake);
+    }
+
+    if (flake.x >= canvas.width || flake.x <= 0) {
+      reset(flake);
+    }
+
+    ctx.beginPath();
+    ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  requestAnimationFrame(snow);
+}
+
+function reset(flake) {
+  flake.x = Math.floor(Math.random() * canvas.width);
+  flake.y = 0;
+  flake.size = Math.random() * 3 + 2;
+  flake.speed = Math.random() * 1 + 0.5;
+  flake.velY = flake.speed;
+  flake.velX = 0;
+  flake.opacity = Math.random() * 0.5 + 0.3;
+}
+
+function init() {
+  for (var i = 0; i < flakeCount; i++) {
+    var x = Math.floor(Math.random() * canvas.width),
+      y = Math.floor(Math.random() * canvas.height),
+      size = Math.random() * 3 + 2,
+      speed = Math.random() * 1 + 0.5,
+      opacity = Math.random() * 0.5 + 0.3;
+
+    flakes.push({
+      speed: speed,
+      velY: speed,
+      velX: 0,
+      x: x,
+      y: y,
+      size: size,
+      stepSize: Math.random() / 30,
+      step: 0,
+      opacity: opacity
+    });
+  }
+
+  snow();
+}
+
+canvas.addEventListener("mousemove", function(e) {
+  (mX = e.clientX), (mY = e.clientY);
+});
+
+window.addEventListener("resize", function() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+init();
