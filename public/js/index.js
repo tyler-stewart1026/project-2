@@ -1,25 +1,29 @@
-// CANT HIDE IT, Please search.js requires it like so.
+// CANT HIDE IT, Place search.js requires it like so.
 placeSearch({
   key: "hfKnbDdg4J5HEbbe3NoAbdudtAa7DAxG",
   container: document.querySelector("#place-search-input")
 });
 
-
-
 // The API object contains methods for each kind of request we'll make
 const API = {
   getCity: function(location) {
     const url = `api/cities/${location}`;
-    const type = 'GET';
-    return $.ajax({url,type});
+    const type = "GET";
+    return $.ajax({ url, type });
   },
 
-  getTrails: function() {
-    return $.ajax({
-      url: "api/trails/",
-      type: "GET"
-    });
-  },
+  // getTrails: function() {
+  //   return $.ajax({
+  //     url: "api/trails/",
+  //     type: "GET"
+  //   });
+  // },
+
+  // getPosts: function() {
+  //   const url = "api/forums/";
+  //   const type = "GET";
+  //   return $.ajax({url, type});
+  // },
 
   deleteExample: function(id) {
     return $.ajax({
@@ -29,20 +33,21 @@ const API = {
   }
 };
 
-$("#submitBtn").on('click',() =>{
+$("#submitBtn").on("click", () => {
   event.preventDefault();
-  API.getTrails();
-  console.log("button click")
+  // sconsole.log("button click");
   const currentSearchVal = $("#place-search-input").val();
-  console.log(currentSearchVal)
-  if(currentSearchVal.length > 0){
-    API.getCity(currentSearchVal).then(res => {
-      console.log(res);
-    })
-    .catch(err =>{
-      console.log(err);
-    })
+  console.log(currentSearchVal);
+  if (currentSearchVal.length > 0) {
+    API.getCity(currentSearchVal)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
+  // API.getTrails()
 });
 
 
