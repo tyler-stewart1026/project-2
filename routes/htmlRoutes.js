@@ -26,7 +26,7 @@ module.exports = function (app) {
         users: dbUser
       };
       console.log(hbsObject);
-      res.render("users", hbsObject);
+      res.render("users-all", hbsObject);
     });
   });
 
@@ -50,15 +50,6 @@ module.exports = function (app) {
 
   app.get("/trails", function (req, res) {
     db.Trails.findAll({}).then(function () {
-      var hbsObject = {
-        trailName: "Tyler trail",
-        trailLength: "0.5",
-        trailDiff: "Black Diamond",
-        rating: "3",
-        // trailPic: "../public/images/snowMountain.png"
-        trailPic: "https://cdn.pixabay.com/photo/2017/02/14/03/03/ama-dablam-2064522_960_720.jpg",
-        trailDesc: "Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters."
-      };
       console.log(hbsObject);
       res.render("index", hbsObject);
     });

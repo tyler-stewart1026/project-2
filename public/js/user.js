@@ -43,7 +43,7 @@ $("#submit-user").on("click", function(event) {
 
   });
 
-  $("#findFriends").on("click", function(event) {
+  $("#findMatch").on("click", function(event) {
     event.preventDefault();
     $.ajax("/api/user", {
       type: "GET",
@@ -65,7 +65,7 @@ $("#submit-user").on("click", function(event) {
   };
 
   //placeholder for bestMatch
-  console.log("response", response[3].ability);
+  //console.log("response", response[14].ability);
     //var user = JSON.stringify(localStorage.setItem('user', {{{user}}}));
     console.log("user", myUser);
     
@@ -86,8 +86,7 @@ $("#submit-user").on("click", function(event) {
       //loop through friends
       for(var i = 0; i < response.length; i++){
         var scoresDiff = 0;
-        //console.log("response", response);
-        console.log("response[i]", response[i]);
+        console.log("response[i]", response);
         //loop through friends scores
         for(var j = 0; j < myFriendScores.length; j++){
           //compare each friends scores against the new friend
@@ -95,8 +94,9 @@ $("#submit-user").on("click", function(event) {
         }
         
         scoresArr.push(scoresDiff);
-
+        
       }
+      console.log("response", response);
       
       //loop through scores to find best match in array
       for(var i = 0; i < scoresArr.length; i++){
