@@ -1,3 +1,24 @@
+<nav class="navbar sticky-top navbar-custom">
+  <div class="container">
+    <span class="navbar-brand mb-0 h1 navbar-custom">Skinder</span>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <div class="container">
   <div class="row">
     <div class="col-8 offset-2">
@@ -7,18 +28,18 @@
           <p>
             <strong>Name</strong>: {{user.name}}</p>
           <p>
-          <p>
-            <strong>Email</strong>: {{user.email}}</p>
-                      <p>
-            <strong>Phone</strong>: {{user.phone}}</p>
-                      <p>
-            <strong>Zipcode</strong>: {{user.zipcode}}</p>
-                                  <p>
-            <strong>Ability</strong>: {{user.ability}}</p>
             <p>
-            <strong>Type</strong>: {{user.type}}</p>
+              <strong>Email</strong>: {{user.email}}</p>
             <p>
-            <strong>Powderhound</strong>: {{user.powderhound}}</p>
+              <strong>Phone</strong>: {{user.phone}}</p>
+            <p>
+              <strong>Zipcode</strong>: {{user.zipcode}}</p>
+            <p>
+              <strong>Ability</strong>: {{user.ability}}</p>
+            <p>
+              <strong>Type</strong>: {{user.type}}</p>
+            <p>
+              <strong>Powderhound</strong>: {{user.powderhound}}</p>
 
             <a href="/">← Back To Home</a>
         </div>
@@ -27,7 +48,8 @@
   </div>
 </div>
 
-<div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="matchModalLabel" aria-hidden="true">
+<div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="matchModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -38,7 +60,7 @@
       </div>
       <div class="modal-body">
         <h4 id="match-name"></h4>
-        <div><img id="match-photo" src="" width="100" /></div>  
+        <div><img id="match-photo" src="" width="100" /></div>
       </div>
     </div>
   </div>

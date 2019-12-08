@@ -9,35 +9,38 @@ black: #171d1b,
 navy: #15223b
 */
 
+/* Typography */
+
+.dark-text {
+  color: #15223b;
+}
+
 body {
   background-color: #e0e4ee;
   font-family: 'Bebas Neue', cursive;
+  margin: 0;
+  height: 100%;
 }
 
 /* NavBar */
 
 .navbar-custom { 
-  background-color: #15223b; 
+  background-color: #15223b;
+  color: #e0e4ee; 
 } 
-
-.navbar-custom-text {
-  color: #e0e4ee;
-}
 
 
 /* Card styling */
 
-.card-custom-background {
+.card-custom {
   background-color: #15223b;
-}
-
-.card-custom-text {
   color: #e0e4ee;
 }
 
+
 /* Header */ 
 
-header {
+.header1 {
   position: relative;
   background-color: black;
   height: 100vh;
@@ -80,10 +83,8 @@ header .overlay {
   background-image: url(../images/tracks.jpg);
 } */
 
-body {
-  margin: 0;
-  height: 100%;
-}
+
+/* Canvas */
 
 canvas {
   position: absolute;
