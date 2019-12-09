@@ -2,6 +2,7 @@ $(document).ready(function() {
   // Gets an optional query string from our url (i.e. ?post_id=23)
   var url = window.location.search;
   var postId;
+  var authorId;
   // Sets a flag for whether or not we're updating a post to be false initially
   var updating = false;
 
@@ -10,23 +11,32 @@ $(document).ready(function() {
   if (url.indexOf("?post_id=") !== -1) {
     postId = url.split("=")[1];
     getPostData(postId);
+  } else if (url.indexOf("?user_id=") !== -1) {
+    authorId = url.split("=")[1];
   }
 
   // Getting jQuery references to the post body, title, form, and category select
   var bodyInput = $("#body");
   var titleInput = $("#title");
   var postForm = $("#forum-submit");
+  var authorSelect = $("#author");
+
   // Adding an event listener for when the form is submitted
   $(postForm).on("submit", function handleFormSubmit(event) {
     event.preventDefault();
     // Wont submit the post if we are missing a body or a title
-    if (!titleInput.val().trim() || !bodyInput.val().trim()) {
+    if (
+      !titleInput.val().trim() ||
+      !bodyInput.val().trim() ||
+      !authorSelect.val()
+    ) {
       return;
     }
     // Constructing a newPost object to hand to the database
     var newPost = {
       title: titleInput.val().trim(),
-      body: bodyInput.val().trim()
+      body: bodyInput.val().trim(),
+      AuthorId: authorSelect.val()
     };
 
     console.log(newPost);

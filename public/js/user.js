@@ -1,106 +1,7 @@
-// $(document).ready(function() {
-//   // Gets an optional query string from our url (i.e. ?post_id=23)
-//   var url = window.location.search;
-//   var userID;
-//   // Sets a flag for whether or not we're updating a post to be false initially
-//   var updating = false;
-
-//   // If we have this section in our url, we pull out the post id from the url
-//   // In localhost:8080/cms?post_id=1, userID is 1
-//   if (url.indexOf("?user_id=") !== -1) {
-//     userID = url.split("=")[1];
-//     getPostData(userID);
-//   }
-
-//   // Getting jQuery references to the post body, title, form, and category select
-//   var nameInput = $("#name");
-//   var emailInput = $("#email");
-//   var phoneInput = $("#phone");
-//   var zipcodeInput = $("#zipcode");
-//   var typeInput = $("#q1");
-//   var abilityInput = $("#q2");
-//   var powderhoundInput = $("#q3");
-//   var userForm = $("#submit-user");
-
-//   // Adding an event listener for when the form is submitted
-//   $(userForm).on("submit", function handleFormSubmit(event) {
-//     event.preventDefault();
-//     // Wont submit the post if we are missing a body or a title
-//     if (!emailInput.val().trim() || !nameInput.val().trim()) {
-//       return;
-//     }
-//     // Constructing a newUser object to hand to the database
-//     var newUser = {
-//       name: nameInput.val().trim(),
-//       email: emailInput.val().trim(),
-//       phone: phoneInput.val().trim(),
-//       zipcode: zipcodeInput.val().trim(),
-//       type: typeInput.val().trim(),
-//       ability: abilityInput.val(),
-//       powderhound: powderhoundInput.val()
-//     };
-
-//     console.log(newUser);
-
-//     // If we're updating a post run updatePost to update a post
-//     // Otherwise run submitPost to create a whole new post
-//     if (updating) {
-//       newUser.id = userID;
-//       updatePost(newUser);
-//     }
-//     else {
-//       submitPost(newUser);
-//     }
-//   });
-
-//   // Submits a new post and brings user to blog page upon completion
-//   function submitUser(User) {
-//     $.post("/api/user/", User, function() {
-//       window.location.href = "/user";
-//     });
-//   }
-
-
-//   // Gets post data for a post if we're editing
-//   function getUserData(id) {
-//     $.get("/api/user/" + id, function(data) {
-//       if (data) {
-//         // If this post exists, prefill our cms forms with its data
-//         nameInput.val(data.name);
-//         emailInput.val(data.email);
-//         phoneInput.val(data.phone);
-//         zipcodeInput.val(data.zipcode);
-//         typeInput.val(data.type);
-//         abilityInput.val(data.ability);
-//         powderhoundInput.val(data.powderhound);
-
-//         // If we have a post with this id, set a flag for us to know to update the post
-//         // when we hit submit
-//         updating = true;
-//       }
-//     });
-//   }
-
-//   // Update a given post, bring user to the blog page when done
-//   function updateUser(user) {
-//     $.ajax({
-//       method: "PUT",
-//       url: "/api/user",
-//       data: user
-//     })
-//       .then(function() {
-//         window.location.href = "/user";
-//       });
-//   }
-// });
-
-
-
-
 $(document).ready(function() {
-newUser = {};
+// newUser = {};
+// scores = [];
 
-console.log("does it work?");
 $("#submit-user").on("click", function(event) {
   event.preventDefault();
   
@@ -114,7 +15,7 @@ $("#submit-user").on("click", function(event) {
         powderhound: $("#q3").val()
     };
 
-  console.log('newUser', newUser);
+  //console.log('newUser', newUser);
     var scores = [
         //$("#q1").val(),
         $("#q2").val(),
@@ -126,13 +27,13 @@ $("#submit-user").on("click", function(event) {
       type: "POST",
       data: newUser,
       success: function(result){
-        console.log(result);
+        //console.log(result);
         return result }
     }).then(function(response) {
-      console.log("newUser", newUser);
+      //console.log("newUser", newUser);
       var id = response.id;
 
-      console.log('response', response.id);
+      //console.log('response', response.id);
       
       console.log("new user created");
       window.location.href = "/user/" + id;
@@ -142,27 +43,60 @@ $("#submit-user").on("click", function(event) {
 
   });
 
-  function findMatch() {
+  $("#findMatch").on("click", function(event) {
+    event.preventDefault();
+    $.ajax("/api/user", {
+      type: "GET",
+      success: function(result){
+        //console.log(result);
+        return result }
+    }).then(function(response) {
+      //console.log("response", response[0]);
+    
+    //placeholder for pulling my user info
+      var myUser = {
+      name: "Matt",
+      email: "matt@sbsef.com",
+      phone: "801-541-1587",
+      zipcode: "84117",
+      type: "Skier",
+      ability: "5" ,
+      powderhound: "5"
+  };
 
+  //placeholder for bestMatch
+  //console.log("response", response[14].ability);
+    //var user = JSON.stringify(localStorage.setItem('user', {{{user}}}));
+    console.log("user", myUser);
+    
+    var myAbility = parseInt(myUser.ability);
+    var myPowderhound = parseInt(myUser.powderhound);
+    var scores = [
+      myAbility, myPowderhound
+    ];
+
+    console.log("scores", scores);
+    
+     // console.log("response", response);
       //setting variables to find match
-      var newFriendsScores = req.body.scores;
+      var myFriendScores = req.body.scores;
       var scoresArr = [];
       var bestMatch = 0;
-
+      console.log("response.length", response.length);
       //loop through friends
-      for(var i = 0; i < dbUsers.length; i++){
+      for(var i = 0; i < response.length; i++){
         var scoresDiff = 0;
-        console.log("dbUsers", dbUsers);
-        
+        console.log("response[i]", response);
         //loop through friends scores
-        for(var j = 0; j < newFriendsScores.length; j++){
+        for(var j = 0; j < myFriendScores.length; j++){
           //compare each friends scores against the new friend
-          scoresDiff += (Math.abs(parseInt(dbUsers[i].scores[j]) - parseInt(newFriendsScores[j])));
+          scoresDiff += (Math.abs(parseInt(response[i].scores[j]) - parseInt(myFriendScores[j])));
         }
         
         scoresArr.push(scoresDiff);
-
+        
       }
+      console.log("response", response);
       
       //loop through scores to find best match in array
       for(var i = 0; i < scoresArr.length; i++){
@@ -173,12 +107,15 @@ $("#submit-user").on("click", function(event) {
       console.log('bestMatch', bestMatch);
 
       //return bestMatch data
-      var yourBestFriend = dbUsers[bestMatch];
+      var yourBestFriend = response[bestMatch];
       res.json(yourBestFriend);
       
       //push new friend object to list of friends array
-      dbUsers.push(req.body);
-  };
+      response.push(req.body);
+});
 
 });
+
+});
+
 
