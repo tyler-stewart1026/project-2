@@ -1,0 +1,46 @@
+<div class="canvasHolder">
+    <div class="canvasOverlay"></div>
+    <canvas id="canvas"></canvas>
+    <div class="container h-100 canvasText">
+        <div class="d-flex h-100 text-center align-items-center">
+            <div class="w-100 text-white">
+                <h1 class="display-3">Skinder</h1>
+                <p class="lead mb-0">Join friends and shred the gnar, dawg.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<nav class="navbar sticky-top navbar-custom">
+    <div class="container">
+        <div class="navbar-brand mb-0 h1 navbar-custom">Skinder</div>
+        <a class="nav-link ml-auto" href="/">Home</a>
+        <a class="nav-link" href="/forum">Forum</a>
+    </div>
+</nav>
+{{!-- <div class="container"> --}}
+<div class="row">
+    <div class="row">
+        <div class="col-sm-2 mt-4">
+            <a class="btn btn-light ml-5 mt-3" href="/forum">Forum</a>
+        </div>
+    </div>
+    <div class="col-md-5 offset-md-3">
+        <form id="forum-submit">
+            <div class="form-group">
+                <label for="title" style="color: white; font-size: 24px"><strong>Title:</strong></label>
+                <input type="text" class="form-control" id="title" size="35">
+                <br />
+                <label for="body" style="color: white; font-size: 24px"><strong>Leave your tracks here:</strong></label>
+                <textarea class="form-control" rows="10" id="body"></textarea>
+                <br />
+                {{!-- <div class="form-group">
+                    <label for="category">Select Author:</label>
+                    <select class="custom-select" id="author">
+                    </select>
+                </div> --}}
+                <button type="submit" class="btn btn-success submit btn-lg">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{{!-- </div> --}}

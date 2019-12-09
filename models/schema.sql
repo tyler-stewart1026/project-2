@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS skinder_db;
+CREATE DATABASE skinder_db;

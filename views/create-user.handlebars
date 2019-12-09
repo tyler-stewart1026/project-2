@@ -1,0 +1,84 @@
+<div class="canvasHolder">
+  <div class="canvasOverlay"></div>
+  <canvas id="canvas"></canvas>
+  <div class="container h-100 canvasText">
+    <div class="d-flex h-100 text-center align-items-center">
+      <div class="w-100 text-white">
+        <h1 class="display-3">Skinder</h1>
+        <p class="lead mb-0">Join friends and shred the gnar, dawg.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<nav class="navbar sticky-top navbar-custom">
+  <div class="container">
+    <div class="navbar-brand mb-0 h1 navbar-custom">Skinder</div>
+    <a class="nav-link ml-auto" href="/">Home</a>
+    <a class="nav-link" href="/forum">Forum</a>
+  </div>
+</nav>
+<div class="container">
+  <h3><strong>About You</strong></h3>
+  <label>Name (Required)</label>
+  <input type="text" id="name" class="form-control" required>
+  <label>Email</label>
+  <input type="text" id="email" class="form-control" required>
+  <label>Phone</label>
+  <input type="text" id="phone" class="form-control" required>
+  <label>Zipcode</label>
+  <input type="text" id="zipcode" class="form-control" required>
+  <hr>
+
+  <h3><strong>Tell Us about yourself</strong></h3>
+  <label>Type</label>
+  <select class="chosen-select" id="q1">
+    <option value="skier">Skier</option>
+    <option value="snowboarder">Snowboarder</option>
+    <option value="cross-country">Cross Country</option>
+    <option value="freestyle">Freestyle/Freerider</option>
+  </select>
+  <h4>How would you rate your ability?</h4>
+  <select class="chosen-select" id="q2">
+    <option value=""></option>
+    <option value="1">1 (Beginner)</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5 (Expert)</option>
+  </select>
+
+  <h4>Do you love to shred the powder?</h4>
+  <select class="chosen-select" id="q3">
+    <option value=""></option>
+    <option value="1">1 (Strongly Disagree)</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5 (Strongly Agree)</option>
+  </select>
+  <br>
+  <br>
+  <br>
+
+  <button type="submit" class="btn btn-primary btn-lg btn-block submit-user" id="submit-user">
+    Create Account</button>
+  <hr>
+
+  <div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="matchModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="matchModalLabel">Your best match is:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4 id="match-name"></h4>
+          <div><img id="match-photo" src="" width="100" /></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
