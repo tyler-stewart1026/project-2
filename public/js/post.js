@@ -2,7 +2,7 @@ $(document).ready(function() {
   // Gets an optional query string from our url (i.e. ?post_id=23)
   var url = window.location.search;
   var postId;
-  var authorId;
+  // var authorId;
   // Sets a flag for whether or not we're updating a post to be false initially
   var updating = false;
 
@@ -20,7 +20,7 @@ $(document).ready(function() {
   var bodyInput = $("#body");
   var titleInput = $("#title");
   var postForm = $("#forum-submit");
-  var authorSelect = $("#author");
+  // var authorSelect = $("#author");
 
   // Adding an event listener for when the form is submitted
   $(postForm).on("submit", function handleFormSubmit(event) {
@@ -28,8 +28,9 @@ $(document).ready(function() {
     // Wont submit the post if we are missing a body or a title
     if (
       !titleInput.val().trim() ||
-      !bodyInput.val().trim() ||
-      !authorSelect.val()
+      !bodyInput.val().trim() 
+      // ||
+      // !authorSelect.val()
     ) {
       return;
     }
@@ -37,7 +38,7 @@ $(document).ready(function() {
     var newPost = {
       title: titleInput.val().trim(),
       body: bodyInput.val().trim(),
-      AuthorId: authorSelect.val()
+      // AuthorId: authorSelect.val()
     };
 
     console.log(newPost);
@@ -84,30 +85,30 @@ $(document).ready(function() {
     });
   }
 
-  function getAuthor() {
-    $.get("/api/user", function(data) {
-      authors = data;
-      console.log("authors", authors);
-      // if (!authors || !authors.length) {
-      //   window.location.href = "/create-user";
-      // } else {
-      var authorArray = [];
-      for (let i = 0; i < authors.length; i++) {
-        // authorArray.push(authors[i].name);
-        authorArray.push(displayAuthors(authors[i]));
-      }
-      // console.log(authorArray);
-      authorSelect.empty();
-      authorSelect.append(authorArray);
-    });
-  }
+  // function getAuthor() {
+  //   $.get("/api/user", function(data) {
+  //     authors = data;
+  //     console.log("authors", authors);
+  //     // if (!authors || !authors.length) {
+  //     //   window.location.href = "/create-user";
+  //     // } else {
+  //     var authorArray = [];
+  //     for (let i = 0; i < authors.length; i++) {
+  //       // authorArray.push(authors[i].name);
+  //       authorArray.push(displayAuthors(authors[i]));
+  //     }
+  //     // console.log(authorArray);
+  //     authorSelect.empty();
+  //     authorSelect.append(authorArray);
+  //   });
+  // }
 
-  getAuthor();
+  // getAuthor();
 
-  function displayAuthors(authors) {
-    var listOption = $("<option>");
-    // listOption.attr("value", authors.id);
-    listOption.text(authors.name);
-    return listOption;
-  }
+  // function displayAuthors(authors) {
+  //   var listOption = $("<option>");
+  //   // listOption.attr("value", authors.id);
+  //   listOption.text(authors.name);
+  //   return listOption;
+  // }
 });
