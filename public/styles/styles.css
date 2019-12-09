@@ -9,35 +9,38 @@ black: #171d1b,
 navy: #15223b
 */
 
+/* Typography */
+
+.dark-text {
+  color: #15223b;
+}
+
 body {
   background-color: #e0e4ee;
   font-family: 'Bebas Neue', cursive;
+  margin: 0;
+  height: 100%;
 }
 
 /* NavBar */
 
 .navbar-custom { 
-  background-color: #15223b; 
+  background-color: #15223b;
+  color: #e0e4ee; 
 } 
-
-.navbar-custom-text {
-  color: #e0e4ee;
-}
 
 
 /* Card styling */
 
-.card-custom-background {
+.card-custom {
   background-color: #15223b;
-}
-
-.card-custom-text {
   color: #e0e4ee;
 }
 
+
 /* Header */ 
 
-header {
+.header1 {
   position: relative;
   background-color: black;
   height: 100vh;
@@ -80,13 +83,13 @@ header .overlay {
   background-image: url(../images/tracks.jpg);
 } */
 
-body {
-  margin: 0;
-  height: 100%;
-}
+
+/* Canvas */
 
 canvas {
   position: absolute;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0 background-image: linear-gradient(bottom, rgb(105, 173, 212) 0%, rgb(23, 82, 145) 84%);
   background-image: -o-linear-gradient(bottom, rgb(105, 173, 212) 0%, rgb(23, 82, 145) 84%);
@@ -94,4 +97,28 @@ canvas {
   background-image: -webkit-linear-gradient(bottom, rgb(105, 173, 212) 0%, rgb(23, 82, 145) 84%);
   background-image: -ms-linear-gradient(bottom, rgb(105, 173, 212) 0%, rgb(23, 82, 145) 84%);
   background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(105, 173, 212)), color-stop(0.84, rgb(23, 82, 145)));
+}
+
+.canvasHolder {
+  position: relative;
+  height: 400px;
+  /* min-height: 25rem; */
+  width: 100%;
+  overflow: hidden; 
+}
+
+.canvasOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.canvasText {
+  position: relative;
+  z-index: 2;
 }
