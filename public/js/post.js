@@ -1,3 +1,4 @@
+// import { clearScreenDown } from "readline";
 $(document).ready(function() {
   // Gets an optional query string from our url (i.e. ?post_id=23)
   var url = window.location.search;
@@ -11,7 +12,7 @@ $(document).ready(function() {
   if (url.indexOf("?post_id=") !== -1) {
     postId = url.split("=")[1];
     getPostData(postId);
-  } 
+  }
   // else if (url.indexOf("?user_id=") !== -1) {
   //   authorId = url.split("=")[1];
   // }
@@ -28,7 +29,7 @@ $(document).ready(function() {
     // Wont submit the post if we are missing a body or a title
     if (
       !titleInput.val().trim() ||
-      !bodyInput.val().trim() 
+      !bodyInput.val().trim()
       // ||
       // !authorSelect.val()
     ) {
@@ -37,7 +38,7 @@ $(document).ready(function() {
     // Constructing a newPost object to hand to the database
     var newPost = {
       title: titleInput.val().trim(),
-      body: bodyInput.val().trim(),
+      body: bodyInput.val().trim()
       // AuthorId: authorSelect.val()
     };
 
@@ -112,3 +113,4 @@ $(document).ready(function() {
   //   return listOption;
   // }
 });
+

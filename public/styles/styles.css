@@ -34,7 +34,11 @@ body {
 
 .card-custom {
   background-color: #15223b;
-  color: #e0e4ee;
+  /* color: #e0e4ee; */
+}
+
+.card-text {
+  color: white;
 }
 
 

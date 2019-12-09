@@ -4,6 +4,16 @@ placeSearch({
   container: document.querySelector("#place-search-input")
 });
 
+// testing fades
+ScrollReveal().reveal('.header1', {
+  delay: 200,
+  duration: 1500
+});
+ScrollReveal().reveal('.headerText', {
+  delay: 700,
+  duration: 2500
+});
+
 // The API object contains methods for each kind of request we'll make
 const API = {
   getCity: function (location) {
@@ -42,7 +52,7 @@ $("#submitBtn").on("click", () => {
   event.preventDefault();
   results.empty()
   $(".place-search-input").val("");
-  // sconsole.log("button click");
+  // console.log("button click");
   const currentSearchVal = $("#place-search-input").val();
   console.log(currentSearchVal);
   if (currentSearchVal.length > 0) {
@@ -94,7 +104,7 @@ $("#submitBtn").on("click", () => {
             var cardPic = $('<img src="' + trailPic + '" alt="Snowy mountain pictures">').addClass("card-img");
             // card body
             var bodyCol = $('<div>').addClass("col-md-8");
-            var cardHeader = $('<h4>').addClass("card-header card-custom").text(trailName);
+            var cardHeader = $('<h4>').addClass("card-header card-custom card-text").text(trailName);
             var cardBody = $('<div>').addClass("card-body");
             var cardBodyRow = $("<div>").addClass("row");
             var cardContentDifficulty = $('<h5>').text("Trail Difficulty: " + trailDiff);
