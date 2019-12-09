@@ -1,0 +1,82 @@
+<div class="canvasHolder">
+  <div class="canvasOverlay"></div>
+  <canvas id="canvas"></canvas>
+  <div class="container h-100 canvasText">
+    <div class="d-flex h-100 text-center align-items-center">
+      <div class="w-100 text-white">
+        <h1 class="display-3">Skinder</h1>
+        <p class="lead mb-0">Join friends and shred the gnar</p>
+      </div>
+    </div>
+  </div>
+</div>
+<nav class="navbar sticky-top navbar-custom">
+  <div class="container">
+    <div class="navbar-brand mb-0 h1 navbar-custom">Skinder</div>
+    <a class="nav-link ml-auto" href="/">Home</a>
+    <a class="nav-link" href="/forum">Forum</a>
+  </div>
+</nav>
+<div class="container mt-4">
+  <h3 class="text-center"><strong>About You</strong></h3>
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <label>Name (Required)</label>
+      <input type="text" id="name" class="form-control" required>
+      <label>Email</label>
+      <input type="text" id="email" class="form-control" required>
+      <label>Phone</label>
+      <input type="text" id="phone" class="form-control" required>
+      <label>Zipcode</label>
+      <input type="text" id="zipcode" class="form-control" required>
+      <hr>
+    </div>
+  </div>
+  <h3 class="text-center"><strong>Tell Us about yourself</strong></h3>
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <h4>Type</h4>
+      <select class="chosen-select" id="q1">
+        <option value="skier">Skier</option>
+        <option value="snowboarder">Snowboarder</option>
+        <option value="cross-country">Cross Country</option>
+        <option value="freestyle">Freestyle/Freerider</option>
+      </select>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <h4>How would you rate your ability?</h4>
+      <select class="chosen-select" id="q2">
+        <option value=""></option>
+        <option value="1">1 (Beginner)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Expert)</option>
+      </select>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <h4>Do you love to shred the powder?</h4>
+      <select class="chosen-select" id="q3">
+        <option value=""></option>
+        <option value="1">1 (Strongly Disagree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Strongly Agree)</option>
+      </select>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="btnDiv text-center mr-5">
+    <button type="submit" class="btn btn-primary submit-user" id="submit-user">
+      Create Account</button>
+  </div>
+  <hr>
+</div>
