@@ -113,7 +113,7 @@ module.exports = function(app) {
   });
 
   // Route for getting lat/long by city===================
-  app.get("/api/cities/:location", function(req, res) {
+  app.get("/user/api/cities/:location", function(req, res) {
     var responseTempObj = {}
     console.log("working");
     var queryUrl =
@@ -163,22 +163,10 @@ module.exports = function(app) {
     });
   });
 
-  // app.get("/api/test", function (req, res) {
-  //   console.log(placeSearch);
-  // });
-
   // Routes Trails API====================================
   app.get("/api/trails", function(req, res) {
     db.Trails.findAll({}).then(function(trailsResults) {
       res.json(trailsResults);
     });
   });
-  // app.get("/api/trails", function(req, res) {
-  //   db.Trails.findAll({
-  //     where: {
-  //       length: req.body.trailLength
-  //     }
-  //   }).then(function(trailsResults) {
-  //     res.json(trailsResults);
-  //   });
 };
