@@ -40,6 +40,7 @@ var results = $(".results")
 
 $("#submitBtn").on("click", () => {
   event.preventDefault();
+  results.empty()
   $(".place-search-input").val("");
   // sconsole.log("button click");
   const currentSearchVal = $("#place-search-input").val();
