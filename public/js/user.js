@@ -1,16 +1,26 @@
-$(document).ready(function () {
+$(document).ready(function() {
   // newUser = {};
   // scores = [];
 
-  $("#submit-user").on("click", function (event) {
+  $("#submit-user").on("click", function(event) {
     event.preventDefault();
 
     var newUser = {
-      name: $("#name").val().trim(),
-      email: $("#email").val().trim(),
-      phone: $("#phone").val().trim(),
-      zipcode: $("#zipcode").val().trim(),
-      type: $("#q1").val().trim(),
+      name: $("#name")
+        .val()
+        .trim(),
+      email: $("#email")
+        .val()
+        .trim(),
+      phone: $("#phone")
+        .val()
+        .trim(),
+      zipcode: $("#zipcode")
+        .val()
+        .trim(),
+      type: $("#q1")
+        .val()
+        .trim(),
       ability: $("#q2").val(),
       powderhound: $("#q3").val()
     };
@@ -21,16 +31,16 @@ $(document).ready(function () {
       $("#q2").val(),
       $("#q3").val()
     ];
-    console.log('scores', scores)
+    console.log("scores", scores);
 
     $.ajax("/api/user", {
       type: "POST",
       data: newUser,
-      success: function (result) {
+      success: function(result) {
         //console.log(result);
-        return result
+        return result;
       }
-    }).then(function (response) {
+    }).then(function(response) {
       //console.log("newUser", newUser);
       var id = response.id;
 
@@ -41,18 +51,17 @@ $(document).ready(function () {
       res.json(res);
       //res.end();
     });
-
   });
 
-  $("#findMatch").on("click", function (event) {
+  $("#findMatch").on("click", function(event) {
     event.preventDefault();
     $.ajax("/api/user", {
       type: "GET",
-      success: function (result) {
+      success: function(result) {
         //console.log(result);
-        return result
+        return result;
       }
-    }).then(function (response) {
+    }).then(function(response) {
       //console.log("response", response[0]);
 
       //placeholder for pulling my user info
@@ -73,15 +82,13 @@ $(document).ready(function () {
 
       var myAbility = parseInt(myUser.ability);
       var myPowderhound = parseInt(myUser.powderhound);
-      var scores = [
-        myAbility, myPowderhound
-      ];
+      var scores = [myAbility, myPowderhound];
 
       console.log("scores", scores);
 
       // console.log("response", response);
       //setting variables to find match
-      var myFriendScores = [4,5];
+      var myFriendScores = [4, 5];
       var scoresArr = [];
       var bestMatch = 0;
       console.log("response", response);
@@ -89,15 +96,17 @@ $(document).ready(function () {
       for (var i = 0; i < response.length; i++) {
         var scoresDiff = 0;
         //loop through friends scores
-        for(var j = 0; j < myFriendScores.length; j++){
+        for (var j = 0; j < myFriendScores.length; j++) {
           console.log("response[i]", response[i]);
           //compare each friends scores against the new friend
-          scoresDiff += (Math.abs(parseInt(response[i].scores[j]) - parseInt(myFriendScores[j])));
+          scoresDiff += Math.abs(
+            parseInt(response[i].scores[j]) - parseInt(myFriendScores[j])
+          );
         }
         console.log("scoresArr", scoresArr);
-        
+
         scoresArr.push(scoresDiff);
-        
+
         console.log("response", response);
       }
       //loop through scores to find best match in array
@@ -106,7 +115,7 @@ $(document).ready(function () {
           bestMatch = i;
         }
       }
-      console.log('bestMatch', bestMatch);
+      console.log("bestMatch", bestMatch);
 
       //return bestMatch data
       var yourBestFriend = response[bestMatch];
@@ -115,6 +124,7 @@ $(document).ready(function () {
       //push new friend object to list of friends array
       //response.push(req.body);
     });
-
-  })
+  });
 });
+
+
