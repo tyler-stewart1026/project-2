@@ -1,13 +1,13 @@
-<header class="header1">
-    <div class="overlay"></div>
+<header class="header1 load-hidden">
+    <div class="overlay load-hidden"></div>
     <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
         <source src="/images/Mt_Baker.mp4" type="video/mp4">
     </video>
     <div class="container h-100">
         <div class="d-flex h-100 text-center align-items-center">
-            <div class="w-100 text-white">
+            <div class="w-100 text-white load-hidden headerText">
                 <h1 class="display-3">Skinder</h1>
-                <p class="lead mb-0">Join friends and shred the gnar, dawg.</p>
+                <p class="lead mb-0">Join friends and shred the gnar</p>
             </div>
         </div>
     </div>
@@ -17,12 +17,14 @@
         <div class="navbar-brand mb-0 h1 navbar-custom">Skinder</div>
         <a class="nav-link ml-auto" href="/">Home</a>
         <a class="nav-link" href="/forum">Forum</a>
+        <a class="nav-link" href="/post">Create Post</a>
+        <a class="nav-link" href="/create-user">Sign Up</a>
     </div>
 </nav>
 <div class="container mb-5 mt-5">
     <div class="row">
         <div class="col-8 offset-2">
-            <div class="card mt-4">
+            <div class="card mt-4 load-hidden searchCard">
                 <div class="card-body">
                     <h5 class="card-title">Enter a city</h5>
                     <input type="search" id="place-search-input" placeholder="Start Searching..." />
