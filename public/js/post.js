@@ -82,4 +82,31 @@ $(document).ready(function() {
       window.location.href = "/forum";
     });
   }
+
+  function getAuthor() {
+    $.get("/api/user", function(data) {
+      authors = data;
+      console.log("authors", authors);
+      // if (!authors || !authors.length) {
+      //   window.location.href = "/create-user";
+      // } else {
+      var authorArray = [];
+      for (let i = 0; i < authors.length; i++) {
+        // authorArray.push(authors[i].name);
+        authorArray.push(displayAuthors(authors[i]));
+      }
+      // console.log(authorArray);
+      authorSelect.empty();
+      authorSelect.append(authorArray);
+    });
+  }
+
+  getAuthor();
+
+  function displayAuthors(authors) {
+    var listOption = $("<option>");
+    // listOption.attr("value", authors.id);
+    listOption.text(authors.name);
+    return listOption;
+  }
 });
