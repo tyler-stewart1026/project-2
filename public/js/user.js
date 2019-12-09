@@ -79,24 +79,25 @@ $("#submit-user").on("click", function(event) {
     
      // console.log("response", response);
       //setting variables to find match
-      var myFriendScores = req.body.scores;
+      var myFriendScores = [4,5];
       var scoresArr = [];
       var bestMatch = 0;
-      console.log("response.length", response.length);
+      console.log("response", response);
       //loop through friends
       for(var i = 0; i < response.length; i++){
         var scoresDiff = 0;
-        console.log("response[i]", response);
         //loop through friends scores
         for(var j = 0; j < myFriendScores.length; j++){
+          console.log("response[i]", response[i]);
           //compare each friends scores against the new friend
           scoresDiff += (Math.abs(parseInt(response[i].scores[j]) - parseInt(myFriendScores[j])));
         }
+        console.log("scoresArr", scoresArr);
         
         scoresArr.push(scoresDiff);
         
+        console.log("response", response);
       }
-      console.log("response", response);
       
       //loop through scores to find best match in array
       for(var i = 0; i < scoresArr.length; i++){
@@ -111,7 +112,7 @@ $("#submit-user").on("click", function(event) {
       res.json(yourBestFriend);
       
       //push new friend object to list of friends array
-      response.push(req.body);
+      //response.push(req.body);
 });
 
 });

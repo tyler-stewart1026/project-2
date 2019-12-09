@@ -20,7 +20,7 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/user", function (req, res) {
+  app.get("/users-all", function (req, res) {
     db.User.findAll({}).then(function (dbUser) {
       var hbsObject = {
         users: dbUser
