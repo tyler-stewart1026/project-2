@@ -9,10 +9,10 @@ $(document).ready(function() {
 
   // This function grabs posts from the database and updates the view
   function getPosts(category) {
-    var categoryString = category || "";
-    if (categoryString) {
-      categoryString = "/category/" + categoryString;
-    }
+    // var categoryString = category || "";
+    // if (categoryString) {
+    //   categoryString = "/category/" + categoryString;
+    // }
     $.get("/api/forums", function(data) {
       console.log("Posts", data);
       posts = data;
