@@ -11,9 +11,10 @@ $(document).ready(function() {
   if (url.indexOf("?post_id=") !== -1) {
     postId = url.split("=")[1];
     getPostData(postId);
-  } else if (url.indexOf("?user_id=") !== -1) {
-    authorId = url.split("=")[1];
-  }
+  } 
+  // else if (url.indexOf("?user_id=") !== -1) {
+  //   authorId = url.split("=")[1];
+  // }
 
   // Getting jQuery references to the post body, title, form, and category select
   var bodyInput = $("#body");
