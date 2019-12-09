@@ -52,7 +52,7 @@ $("#submitBtn").on("click", () => {
   event.preventDefault();
   results.empty()
   $(".place-search-input").val("");
-  // sconsole.log("button click");
+  // console.log("button click");
   const currentSearchVal = $("#place-search-input").val();
   console.log(currentSearchVal);
   if (currentSearchVal.length > 0) {

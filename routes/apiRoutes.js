@@ -168,17 +168,11 @@ module.exports = function(app) {
   // });
 
   // Routes Trails API====================================
-  app.get("/api/trails", function(req, res) {});
-
-  // app.get("/api/trails", function(req, res) {
-  //   db.Trails.findAll({
-  //     where: {
-  //       rating: req.body.rating
-  //     }
-  //   }).then(function(trailsResults) {
-  //     res.json(trailsResults);
-  //   });
-  // });
+  app.get("/api/trails", function(req, res) {
+    db.Trails.findAll({}).then(function(trailsResults) {
+      res.json(trailsResults);
+    });
+  });
   // app.get("/api/trails", function(req, res) {
   //   db.Trails.findAll({
   //     where: {
