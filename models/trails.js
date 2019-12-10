@@ -1,13 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   // Define Trails Variable for API routes.
   var Trails = sequelize.define("Trails", {
-    trailId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -16,18 +9,14 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     difficulty: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
       validate: {
         len: [1]
       }
     },
-    latLong: {
-      type: DataTypes.DECIMAL,
-      allowNull: true
-    },
     length: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
       allowNull: true,
       validate: {
         len: [1, 100]
@@ -38,6 +27,13 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       validate: {
         len: [1, 100]
+      }
+    },
+    summary: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [1]
       }
     }
   });
