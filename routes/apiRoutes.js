@@ -24,7 +24,6 @@ module.exports = function(app) {
       powderhound: req.body.powderhound
     }).then(function(dbUsers) {
       res.json(dbUsers);
-
     });
   });
 
@@ -121,7 +120,7 @@ module.exports = function(app) {
       process.env.MAPKEY +
       "&location=" +
       req.params.location;
-    axios.get(queryUrl).then(function({data: {results}}) {
+    axios.get(queryUrl).then(function({ data: { results } }) {
       if (results.length === 0) return {};
       const [firstResult] = results;
       const { locations } = firstResult;
@@ -134,7 +133,7 @@ module.exports = function(app) {
       var lng = latLng.lng;
       console.log(lng);
       // console.log("This is our lon: " + latLng.lng)
-      responseTempObj.latLng = latLng
+      responseTempObj.latLng = latLng;
       var queryUrlMaps =
         "https://www.powderproject.com/data/get-trails?lat=" +
         lat +
@@ -153,7 +152,7 @@ module.exports = function(app) {
             // console.log("This is the trialName: " + trailName);
           }
           responseTempObj.trails = data.trails;
-          res.json(responseTempObj)
+          res.json(responseTempObj);
         })
         .catch(function(error) {
           if (error.response) {
@@ -168,5 +167,25 @@ module.exports = function(app) {
     db.Trails.findAll({}).then(function(trailsResults) {
       res.json(trailsResults);
     });
+  });
+
+  // POST route for saving a new post
+  app.post("/api/trails", function(req, res) {
+    console.log(req.body);
+    db.Trails.create({
+      name: req.body.name,
+      difficulty: req.body.difficulty,
+      length: req.body.length,
+      rating: req.body.rating,
+      summary: req.body.summary
+    })
+      .then(function(dbTrails) {
+        res.json(dbTrails);
+      })
+      .catch(function(error) {
+        if (error) {
+          console.log("Something went wrong: " + error);
+        }
+      });
   });
 };
