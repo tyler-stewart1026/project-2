@@ -41,10 +41,7 @@ module.exports = function(app) {
   });
 
   app.get("/", function(req, res) {
-    db.Trails.findAll({}).then(function() {
-      
-      res.render("index", hbsObject);
-    });
+      res.render("index");
   });
 
   // Render 404 page for any unmatched routes
