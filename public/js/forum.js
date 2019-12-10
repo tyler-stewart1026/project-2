@@ -68,7 +68,7 @@ $(document).ready(function() {
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
     var newPostAuthor = $("<h5>");
-    // need to update 
+    // need to update
     // newPostAuthor.text("Tracks by: ");
     newPostAuthor.css({
       float: "right",

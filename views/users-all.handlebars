@@ -1,31 +1,31 @@
 <div class="container">
-<h1>Find your Match</h1>
-{{#each users}}
-    <div class="row">
-        <div class="col-8 offset-2">
-            <div class="card mt-4">
-                  
-                <div class="card-body">
+  <h1>Find your Match</h1>
+  {{#each users}}
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div class="card mt-4">
 
-      <p>
-        <h2>{{this.name}}</h2>
-        <div class="row">
-        <div class="col-4">Phone: {{this.phone}}</div>
-        <div class="col-4">Email: {{this.email}}</div>
-        <div class="col-4">Zipcode: {{this.zipcode}}</div>
-        </div>
-        <h3>Skills</h3>
-        Type: {{this.type}}<br>
-        Ability: {{this.ability}}<br>
-        Powderhound: {{this.powderhound}}<br>
-        <hr />
-
-        <button data-userid="{{this.id}}" class="findMatch">Select Match</button>
-      </p>
-
-                </div>
+        <div class="card-body">
+          <p>
+            <h2>{{this.name}}</h2>
+            <div class="row">
+              <div class="col-4">Phone: {{this.phone}}</div>
+              <div class="col-4">Email: {{this.email}}</div>
+              <div class="col-4">Zipcode: {{this.zipcode}}</div>
             </div>
+            <h3>Skills</h3>
+            Type: {{this.type}}<br>
+            Ability: {{this.ability}}<br>
+            Powderhound: {{this.powderhound}}<br>
+            <hr />
+
+            <button data-userid="{{this.id}}" class="findMatch"><a
+                href="/user/1">Select Match</a></button>
+          </p>
+
         </div>
+      </div>
     </div>
-     {{/each}}
+  </div>
+  {{/each}}
 </div>
