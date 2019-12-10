@@ -25,25 +25,13 @@ const API = {
     });
   },
 
-  // getTrails: function() {
-  //   return $.ajax({
-  //     url: "api/trails/",
-  //     type: "GET"
-  //   });
-  // },
-
-  // getPosts: function() {
-  //   const url = "api/forums/";
-  //   const type = "GET";
-  //   return $.ajax({url, type});
-  // },
-
-  deleteExample: function (id) {
+  saveTrails: function() {
     return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
+      url: "api/trails/",
+      type: "POST"
     });
   }
+
 };
 
 var results = $(".results")
@@ -78,16 +66,24 @@ $("#submitBtn").on("click", () => {
           // console.log("trail Location: " + trailLocation)
         }
 
+        $(document).on("click", "button.saveTrail", function() {
+          event.preventDefault();
+            var trailId = res.trails;
+            console.log("trail id: " +  trailId);
+          
+          API.saveTrails();
+        }); 
+
         function renderCards() {
           for (let i = 0; i < res.trails.length; i++) {
             // testing
-            console.log("trail name: " + trailName)
-            console.log("trail length: " + trailLength)
-            console.log("trail Difficulty: " + trailDiff)
-            console.log("trail pic: " + trailPic)
-            console.log("trail raiting: " + trailRating)
-            console.log("trail summary: " + trailSummary)
-            console.log("trail Location: " + trailLocation)
+            // console.log("trail name: " + trailName)
+            // console.log("trail length: " + trailLength)
+            // console.log("trail Difficulty: " + trailDiff)
+            // console.log("trail pic: " + trailPic)
+            // console.log("trail raiting: " + trailRating)
+            // console.log("trail summary: " + trailSummary)
+            // console.log("trail Location: " + trailLocation)
             // variables holding search results
             var trailName = res.trails[i].name;
             var trailLength = res.trails[i].length;
@@ -155,3 +151,4 @@ $("#submitBtn").on("click", () => {
       });
   }
 });
+
