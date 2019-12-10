@@ -7,39 +7,148 @@
 </nav>
 <div class="container">
   <div class="row">
-    <div class="col-md-4 mr-auto">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h5 class="card-title">User Account</h5>
-          <p>
-            <strong>Name</strong>: {{user.name}}</p>
-          <p>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+      <div class="col-md-12 mr-auto">
+        <div class="card mt-4">
+          <div class="card-body">
+            <h5 class="card-title">User Account</h5>
+            <hr />
+            <h6>Personal Information</h6>
+            <hr />
             <p>
-              <strong>Email</strong>: {{user.email}}</p>
+              <strong>Name</strong>: {{user.name}}</p>
             <p>
-              <strong>Phone</strong>: {{user.phone}}</p>
-            <p>
-              <strong>Zipcode</strong>: {{user.zipcode}}</p>
-            <p>
-              <strong>Ability</strong>: {{user.ability}}</p>
-            <p>
-              <strong>Type</strong>: {{user.type}}</p>
-            <p>
-              <strong>Powderhound</strong>: {{user.powderhound}}</p>
+              <p>
+                <strong>Email</strong>: {{user.email}}</p>
+              <p>
+                <strong>Phone</strong>: {{user.phone}}</p>
+              <p>
+                <strong>Zipcode</strong>: {{user.zipcode}}</p>
+              <p>
+                <hr />
+                <h6>Ability Profile</h6>
+                <hr />
+                <p>
+                  <strong>Type</strong>: {{user.type}}</p>
+                <p>
+                  <strong>Ability</strong>: {{user.ability}}</p>
 
+                <p>
+                  <strong>Powderhound</strong>: {{user.powderhound}}</p>
+
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-md-8">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Hello I'm saved trails</h5>
-          <div class="savedTrails">
-            
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+          <div class="col-md-12">
+            <div class="card mt-4">
+              <div class="card-body">
+                <h5 class="card-title">Selected Trails</h5>
+                <div class="savedTrails">
+
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Trail Name</th>
+                        <th>Difficulty</th>
+                        <th>Length</th>
+                        <th>Rating</th>
+                        <th>Location</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr id="form-row">
+                        <td colspan="4"></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <button><a href="#trails">Find Trails</a></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="card mt-4">
+              <div class="card-body">
+                <h5 class="card-title">My Friends</h5>
+                <div class="savedTrails">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Type</th>
+                        <th>Ability</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr id="form-row">
+                        <td colspan="4"></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <button><a href="/users-all">Find Match</a></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="card mt-4">
+              <div class="card-body">
+                <h5 class="card-title">My Forum Posts</h5>
+                <div class="savedTrails">
+
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th># of Posts</th>
+                        <th>Comments</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr id="form-row">
+                        <td colspan="4"></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <button><a href="/post">Create Post</a></button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+    <div class="container mb-5 mt-5">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mt-4 load-hidden searchCard">
+            <div class="card-body">
+              <a name=trails></a>
+              <h5 class="card-title">Find New Terrain</h5>
+              <input type="search" id="place-search-input"
+                placeholder="Enter a city/location..." />
 
+              <button type="button" id="submitBtn" class="btn
+                btn-primary mt-2">Search Trails</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="results">
+
+      </div>
+    </div>
+<script src="/js/index.js" type="text/javascript"></script>

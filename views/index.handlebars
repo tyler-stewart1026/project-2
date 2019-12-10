@@ -1,6 +1,7 @@
 <header class="header1 load-hidden">
     <div class="overlay load-hidden"></div>
-    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+    <video playsinline="playsinline" autoplay="autoplay" muted="muted"
+        loop="loop">
         <source src="/images/Mt_Baker.mp4" type="video/mp4">
     </video>
     <div class="container h-100">
@@ -8,6 +9,8 @@
             <div class="w-100 text-white load-hidden headerText">
                 <h1 class="display-3">Skinder</h1>
                 <p class="lead mb-0">Join friends and shred the gnar</p>
+                <a href="/create-user"><button class="btn-primary p-3 mt-3">Sign
+                        Up Today!</button></a>
             </div>
         </div>
     </div>
@@ -17,56 +20,6 @@
         <div class="navbar-brand mb-0 h1 navbar-custom">Skinder</div>
         <a class="nav-link ml-auto" href="/">Home</a>
         <a class="nav-link" href="/forum">Forum</a>
-        <a class="nav-link" href="/post">Create Post</a>
-        <a class="nav-link" href="/create-user">Sign Up</a>
+        <a class="nav-link" href="/user/1">User Account</a>
     </div>
 </nav>
-<div class="container mb-5 mt-5">
-    <div class="row">
-        <div class="col-8 offset-2">
-            <div class="card mt-4 load-hidden searchCard">
-                <div class="card-body">
-                    <h5 class="card-title">Enter a city</h5>
-                    <input type="search" id="place-search-input" placeholder="Start Searching..." />
-
-                    <button type="button" id="submitBtn" class="btn btn-primary mt-2">Search Trails</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="results">
-
-    </div>
-</div>
-{{!-- <div class="card mb-3">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <img src="{{this.trailPic}}" class="card-img" alt="Snowy Mountain">
-            </div>
-            <div class="col-md-8">
-                <h4 class="card-header card-custom">{{trailName}}</h4>
-                <div class="card-body">
-                    <div class="row">
-                        <h5 class="col-md-4">Trail Difficulty: {{this.trailDiff}}</h5>
-                        <h5 class="col-md-4 text-center">Trail Length: {{this.trailLength}}</h5>
-                        <h5 class="col-md-4 text-center">Rating: {{this.rating}}/5</h5>
-                    </div>
-                    <p class="card-text">{{this.trailDesc}}</p>
-                    <div class="row">
-                        <div class="col-md-9 text-left">Location: {{this.trailLocation}}</div>
-                        <div class="text-right">
-                            <button type="button" class="btn btn-primary saveTrail">
-                                Save
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
-</div>
-

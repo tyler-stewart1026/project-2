@@ -112,8 +112,8 @@ module.exports = function(app) {
   });
 
   // Route for getting lat/long by city===================
-  app.get("/api/cities/:location", function(req, res) {
-    var responseTempObj = {};
+  app.get("/user/api/cities/:location", function(req, res) {
+    var responseTempObj = {}
     console.log("working");
     var queryUrl =
       "http://www.mapquestapi.com/geocoding/v1/address?key=" +
@@ -163,7 +163,6 @@ module.exports = function(app) {
   });
 
   // Routes Trails API====================================
-
   app.get("/api/trails", function(req, res) {
     db.Trails.findAll({}).then(function(trailsResults) {
       res.json(trailsResults);
