@@ -18,15 +18,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  // Forum.associate = function(models) {
-  //   // We're saying that a Forum should belong to an User
-  //   // A Forum can't be created without an User due to the foreign key constraint
-  //   Forum.belongsTo(models.User, {
-  //     foreignKey: {
-  //       allowNull: false
-  //     }
-  //   });
-  // };
 
   return Forum;
 };
