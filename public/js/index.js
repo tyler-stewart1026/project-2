@@ -110,16 +110,16 @@ $("#submitBtn").on("click", () => {
             var cardLocationRow = $("<div>").addClass("row");
             var cardContentLocation = $("<div>").addClass("col-md-9 text-left").text("Location: " + trailLocation);
             var rightSideBtn = $("<div>").addClass("text-right");
-            var saveBtn = $("<button>").addClass("saveTrail btn btn-primary").text("Save");
+            // var saveBtn = $("<button>").addClass("btn btn-primary saveTrail").text("Save");
             cardAppend();
           }
 
           function cardAppend() {
             // puts Button inside its div
-            rightSideBtn.append(saveBtn);
+            // rightSideBtn.append(saveBtn);
             // put both button div and location div into their row
             cardLocationRow.append(cardContentLocation);
-            cardLocationRow.append(rightSideBtn);
+            // cardLocationRow.append(rightSideBtn);
             // put h5's into their row
             cardBodyRow.append(cardContentDifficulty);
             cardBodyRow.append(cardContentLength);
