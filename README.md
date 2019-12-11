@@ -19,7 +19,7 @@ The above listed dependencies are contained on the package.json file.  Run the f
 
 ```npm install```
 
-To run the application locally, an environment file will need to be set up with your database password, as well as API keys for the following sites:
+To run the application locally, an environment file will need to be set up with your database password, as well as API keys for the following sites:  
 [mapquest](https://developer.mapquest.com/)  
 [powder project](https://www.powderproject.com/data)
 
