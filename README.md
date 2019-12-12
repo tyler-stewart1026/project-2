@@ -1,6 +1,6 @@
 # Skinder
 
-![screenshot](/public/images.skinder1.gif)
+![screenshot](/public/images/skinder1.gif)
 
 Skinder is a platform which allows users to create an account, search for backcountry ski/board trails, find friends, communicate through a forum and store their fav's to a database.
 
